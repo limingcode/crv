@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <contextName>logback</contextName>
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+    <springProperty scope="context" name="logPath" source="logging.path"/>
+    <springProperty scope="context" name="serverPort" source="server.port"/>
+    <springProperty scope="context" name="fileMaxHistory" source="logging.file.max-history"/>
+    <springProperty scope="context" name="fileMaxSize" source="logging.file.max-size"/>
+    <springProperty scope="context" name="fileName" source="logging.file"/>
+
+
+    <!--输出到控制台-->
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <withJansi>true</withJansi>
+        <encoder>
+            <!--<pattern>%d %p (%file:%line\)- %m%n</pattern>-->
+            <!--格式化输出：%d:表示日期    %thread:表示线程名     %-5level:级别从左显示5个字符宽度  %msg:日志消息    %n:是换行符-->
+            <pattern>%red(%d{yyyy-MM-dd HH:mm:ss:SSS}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger) - %cyan(%msg%n)</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--输出到文件--><!-- 按照每天生成日志文件 -->
+    <appender name="FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志文件输出的文件名 %i是当天第几份文件-->
+            <FileNamePattern>${logPath}/${fileName}.${serverPort}.log.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <MaxHistory>${fileMaxHistory}</MaxHistory>
+            <MaxFileSize>${fileMaxSize}</MaxFileSize>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--myibatis log configure-->
+    <logger name="com.crv.erais.dao" level="DEBUG"/>
+
+    <!-- 日志输出级别 -->
+    <root level="INFO">
+        <appender-ref ref="consoleLog" />
+        <appender-ref ref="FILE" />
+    </root>
+
+</configuration>
