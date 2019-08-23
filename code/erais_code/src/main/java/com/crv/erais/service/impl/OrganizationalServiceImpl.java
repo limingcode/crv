@@ -17,10 +17,11 @@ import java.util.List;
  * 组织机构
  */
 public class OrganizationalServiceImpl implements OrganizationalService {
-	@Autowired
+
 	/**
 	 * 组织机构mapper 接口对象
 	 */
+	@Autowired
 	private OrganizationalMapper orgMapper;
 
 	/**

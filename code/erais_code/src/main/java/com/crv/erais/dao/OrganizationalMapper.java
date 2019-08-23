@@ -16,6 +16,7 @@ public interface OrganizationalMapper {
 	 * 获取所有组织机构
 	 * @return List<Organizational>
 	 */
+
 	public List<Organizational> list();
 	/**
 	 * 分页组织机构
