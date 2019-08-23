@@ -1,12 +1,12 @@
 package com.crv.erais.model;
 
 import lombok.Data;
-
+import com.crv.erais.model.BaseEntity;
 @Data
 /**
  * 组织机构
  */
-public class Organizational {
+public class Organizational extends   BaseEntity{
 	/**
 	 * id
 	 */
