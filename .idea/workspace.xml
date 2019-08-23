@@ -1,34 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="136136d1-ae11-4070-88ba-caec298ec049" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/EraisApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/common/Dictionary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/common/InterceptorConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/common/JwtUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/common/RestTemplateConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/controller/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/controller/TestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/dao/TestDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/interceptor/AuthenticationInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/model/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/model/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/model/common/Result.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/model/common/ResultCode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/service/TestService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/java/com/crv/erais/service/impl/TestServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/main/resources/logback-spring.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/src/test/java/com/crv/erais/EraisApplicationTests.java" beforeDir="false" />
-    </list>
+    <list default="true" id="136136d1-ae11-4070-88ba-caec298ec049" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -150,15 +123,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1566536107659</updated>
-      <workItem from="1566536109693" duration="551000" />
+      <workItem from="1566536109693" duration="792000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="551000" />
+    <option name="totallyTimeSpent" value="792000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <layout>
       <window_info anchor="right" id="Palette" />
       <window_info anchor="bottom" id="TODO" order="6" />
