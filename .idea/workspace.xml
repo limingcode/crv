@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="136136d1-ae11-4070-88ba-caec298ec049" name="Default" comment="" />
+    <list default="true" id="136136d1-ae11-4070-88ba-caec298ec049" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/erais_code/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/controller/EraisAuditOrganController.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/controller/EraisAuditOrganController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/dao/OrganizationalMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/dao/OrganizationalMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/model/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/model/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/model/EraisAuditOrgan.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/model/EraisAuditOrgan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/service/OrganizationalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/service/OrganizationalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/service/impl/EraisAuditOrganServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/service/impl/EraisAuditOrganServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/service/impl/OrganizationalServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/service/impl/OrganizationalServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/erais_code/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/erais_code/src/main/resources/mybatis/OrganizationalMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/src/main/resources/mybatis/OrganizationalMapper.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +53,109 @@
               <item name="CrvERAIS" type="462c0819:PsiDirectoryNode" />
               <item name="code" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="CrvERAIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CrvERAIS" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="erais_code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CrvERAIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CrvERAIS" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="erais_code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CrvERAIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CrvERAIS" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="erais_code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CrvERAIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CrvERAIS" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="erais_code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CrvERAIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CrvERAIS" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="erais_code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CrvERAIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CrvERAIS" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="erais_code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="crv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CrvERAIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CrvERAIS" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="erais_code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="crv" type="462c0819:PsiDirectoryNode" />
+              <item name="erais" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CrvERAIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CrvERAIS" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="erais_code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="crv" type="462c0819:PsiDirectoryNode" />
+              <item name="erais" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CrvERAIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CrvERAIS" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="erais_code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="crv" type="462c0819:PsiDirectoryNode" />
+              <item name="erais" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CrvERAIS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CrvERAIS" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="erais_code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="crv" type="462c0819:PsiDirectoryNode" />
+              <item name="erais" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -53,7 +168,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/code/erais_code" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -124,42 +239,66 @@
       <option name="presentableId" value="Default" />
       <updated>1566536107659</updated>
       <workItem from="1566536109693" duration="792000" />
+      <workItem from="1566538866868" duration="2821000" />
+      <workItem from="1566789808038" duration="1759000" />
     </task>
+    <task id="LOCAL-00001" summary="测试">
+      <created>1566539024812</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1566539024812</updated>
+    </task>
+    <task id="LOCAL-00002" summary="分页组件">
+      <created>1566540184228</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1566540184228</updated>
+    </task>
+    <task id="LOCAL-00003" summary="修改分页组件   查询审计机构">
+      <created>1566554414101</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1566554414101</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="792000" />
+    <option name="totallyTimeSpent" value="5372000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info id="Image Layers" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.5015129" side_tool="true" visible="true" weight="0.5302782" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49848714" visible="true" weight="0.5302782" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info id="Capture Tool" />
-      <window_info id="Designer" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24963397" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33963692" />
+      <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" />
-      <window_info anchor="right" id="Theme Preview" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,5 +306,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="测试" />
+    <MESSAGE value="分页组件" />
+    <MESSAGE value="修改分页组件   查询审计机构" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改分页组件   查询审计机构" />
   </component>
 </project>

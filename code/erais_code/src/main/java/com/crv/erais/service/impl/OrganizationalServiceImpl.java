@@ -48,4 +48,9 @@ public class OrganizationalServiceImpl implements OrganizationalService {
 		List<Organizational> data =  orgMapper.pageList(org);
 		return PageUtil.getDataTable(data);
 	}
+
+	@Override
+	public Organizational getById(String id) {
+		return orgMapper.getById(id);
+	}
 }

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crv.erais.dao.EraisAuditOrganMapper" >
+  <resultMap id="BaseResultMap" type="com.crv.erais.model.EraisAuditOrgan" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CHARGE_ID" property="chargeId" jdbcType="VARCHAR" />
+    <result column="CHARGE" property="charge" jdbcType="VARCHAR" />
+    <result column="TOP_ORGAN_ID" property="topOrganId" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="CREATE_PRO" property="createPro" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="DECIMAL" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
+    <result column="UPDATE_PRO" property="updatePro" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
+  </resultMap>
+
+  <sql id="sereach_sql" >
+    <where>
+      <if test="id != null and id!=''"> and ID = #{id}  </if>
+      <if test="name != null and name!=''"> and NAME = #{name}  </if>
+      <if test="chargeId != null and chargeId!=''"> and CHARGE_ID = #{chargeId}  </if>
+      <if test="charge != null and charge!=''"> and CHARGE = #{charge}  </if>
+      <if test="topOrganId != null and topOrganId!=''"> and TOP_ORGAN_ID = #{topOrganId}  </if>
+      <if test="phone != null and phone!=''"> and PHONE = #{phone}  </if>
+      <if test="status != null and status!=''"> and STATUS = #{status}  </if>
+      <if test="createPro != null and createPro!=''"> and CREATE_PRO = #{createPro}  </if>
+      <if test="sort != null and sort!=''"> and SORT = #{sort}  </if>
+      <if test="code != null and code!=''"> and CODE = #{code}  </if>
+      <if test="updatePro != null and updatePro!=''"> and UPDATE_PRO = #{updatePro}  </if>
+      <if test="sort != null and sort!=''"> and SORT = #{sort} </if>
+      <if test="searchValue != null and searchValue != ''"> and (NAME like concat('%', concat(#{searchValue}, '%')))</if>
+    </where>
+
+  </sql>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, NAME, CHARGE_ID, CHARGE, TOP_ORGAN_ID, PHONE, STATUS, CREATE_PRO, SORT, CODE, 
+    CREATE_TIME, UPDATE_PRO, UPDATE_TIME
+  </sql>
+  <select id="getList" resultMap="BaseResultMap" parameterType="com.crv.erais.model.EraisAuditOrgan" >
+    select
+    <include refid="Base_Column_List" />
+    from ERAIS_AUDIT_ORGAN
+
+    <include refid="sereach_sql" />
+  </select>
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ERAIS_AUDIT_ORGAN
+    where ID = #{Id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from ERAIS_AUDIT_ORGAN
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="save111" parameterType="com.crv.erais.model.EraisAuditOrgan" >
+    insert into ERAIS_AUDIT_ORGAN (ID, NAME, CHARGE_ID, 
+      CHARGE, TOP_ORGAN_ID, PHONE, 
+      STATUS, CREATE_PRO, SORT, 
+      CODE, CREATE_TIME, UPDATE_PRO, 
+      UPDATE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{chargeId,jdbcType=VARCHAR}, 
+      #{charge,jdbcType=VARCHAR}, #{topOrganId,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{status,jdbcType=DECIMAL}, #{createPro,jdbcType=VARCHAR}, #{sort,jdbcType=DECIMAL}, 
+      #{code,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updatePro,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=DATE})
+  </insert>
+  <insert id="save" parameterType="com.crv.erais.model.EraisAuditOrgan" >
+    insert into ERAIS_AUDIT_ORGAN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="chargeId != null" >
+        CHARGE_ID,
+      </if>
+      <if test="charge != null" >
+        CHARGE,
+      </if>
+      <if test="topOrganId != null" >
+        TOP_ORGAN_ID,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createPro != null" >
+        CREATE_PRO,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updatePro != null" >
+        UPDATE_PRO,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeId != null" >
+        #{chargeId,jdbcType=VARCHAR},
+      </if>
+      <if test="charge != null" >
+        #{charge,jdbcType=VARCHAR},
+      </if>
+      <if test="topOrganId != null" >
+        #{topOrganId,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="createPro != null" >
+        #{createPro,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updatePro != null" >
+        #{updatePro,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+<!--  <update id="update" parameterType="com.crv.erais.model.EraisAuditOrgan" >
+    update ERAIS_AUDIT_ORGAN
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chargeId != null" >
+        CHARGE_ID = #{record.chargeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.charge != null" >
+        CHARGE = #{record.charge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.topOrganId != null" >
+        TOP_ORGAN_ID = #{record.topOrganId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        PHONE = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createPro != null" >
+        CREATE_PRO = #{record.createPro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        SORT = #{record.sort,jdbcType=DECIMAL},
+      </if>
+      <if test="record.code != null" >
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.updatePro != null" >
+        UPDATE_PRO = #{record.updatePro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>-->
+  <update id="update" parameterType="com.crv.erais.model.EraisAuditOrgan" >
+    update ERAIS_AUDIT_ORGAN
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeId != null" >
+        CHARGE_ID = #{chargeId,jdbcType=VARCHAR},
+      </if>
+      <if test="charge != null" >
+        CHARGE = #{charge,jdbcType=VARCHAR},
+      </if>
+      <if test="topOrganId != null" >
+        TOP_ORGAN_ID = #{topOrganId,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="createPro != null" >
+        CREATE_PRO = #{createPro,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updatePro != null" >
+        UPDATE_PRO = #{updatePro,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="update111" parameterType="com.crv.erais.model.EraisAuditOrgan" >
+    update ERAIS_AUDIT_ORGAN
+    set NAME = #{name,jdbcType=VARCHAR},
+      CHARGE_ID = #{chargeId,jdbcType=VARCHAR},
+      CHARGE = #{charge,jdbcType=VARCHAR},
+      TOP_ORGAN_ID = #{topOrganId,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      CREATE_PRO = #{createPro,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=DECIMAL},
+      CODE = #{code,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=DATE},
+      UPDATE_PRO = #{updatePro,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

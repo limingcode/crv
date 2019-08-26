@@ -25,4 +25,16 @@
         FROM
             ERAIS_ORGANIZATIONAL 
     </select>
+
+    <select id="getById" resultMap="UserMap">
+        SELECT
+        <include refid="columns" />
+        FROM
+        ERAIS_ORGANIZATIONAL
+        <where>
+            <if test="id!=null and id!=''">
+                ID=#{id}
+            </if>
+        </where>
+    </select>
 </mapper>

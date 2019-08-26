@@ -19,4 +19,11 @@ public interface OrganizationalService {
 	 * @return TableDataInfo
 	 */
 	public TableDataInfo pageList(Organizational org);
+
+	/**
+	 * 根据ID获取
+	 * @param id
+	 * @return Organizational
+	 */
+	public Organizational getById(String id);
 }

@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crv.erais.dao.EraisRolesMapper">
+
+	<!-- 启用redis缓存 -->
+	<!-- <cache type="com.km.redis.mybatis.MybatisRedisCache" eviction="LRU"/> -->
+
+    <resultMap id="EraisRolesMap" type="com.crv.erais.model.EraisRoles">
+        <result property="id" column="id"/>
+        <result property="roleName" column="roleName"/>
+        <result property="roleCode" column="roleCode"/>
+        <result property="roleParent" column="roleParent"/>
+        <result property="status" column="status"/>
+        <result property="createPro" column="createPro"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updatePro" column="updatePro"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="menuAuthority" column="menuAuthority"/>
+        <result property="operation" column="operation"/>
+
+    </resultMap>
+
+	<resultMap id="EraisRolesMapPage" type="com.crv.erais.model.EraisRoles">
+		<result property="id" column="id"/>
+		<result property="roleName" column="roleName"/>
+		<result property="roleCode" column="roleCode"/>
+		<result property="roleParent" column="roleParent"/>
+		<result property="status" column="status"/>
+		<result property="createPro" column="createPro"/>
+		<result property="createTime" column="createTime"/>
+		<result property="updatePro" column="updatePro"/>
+		<result property="updateTime" column="updateTime"/>
+		<result property="menuAuthority" column="menuAuthority"/>
+		<result property="operation" column="operation"/>
+		<result property="parentRoleName" column="parentRoleName"/>
+
+	</resultMap>
+    
+    <sql id="columns">
+        ID AS id,
+        ROLE_NAME AS roleName,
+        ROLE_CODE AS roleCode,
+        ROLE_PARENT AS roleParent,
+        STATUS AS status,
+        CREATE_PRO AS createPro,
+        CREATE_TIME AS createTime,
+        UPDATE_PRO AS updatePro,
+        UPDATE_TIME AS updateTime,
+        MENU_AUTHORITY AS menuAuthority,
+        OPERATION AS operation
+    </sql>
+
+	<sql id="columnsPage">
+        ID AS id,
+        ROLE_NAME AS roleName,
+        ROLE_CODE AS roleCode,
+        ROLE_PARENT AS roleParent,
+        STATUS AS status,
+        CREATE_PRO AS createPro,
+        CREATE_TIME AS createTime,
+        UPDATE_PRO AS updatePro,
+        UPDATE_TIME AS updateTime,
+        MENU_AUTHORITY AS menuAuthority,
+        OPERATION AS operation,
+        parentRoleName as  parentRoleName
+    </sql>
+
+    <sql id="where">
+    	<where>
+           	<if test="id != null and id != ''">
+                AND ID = #{id}
+           	</if>
+           	<if test="roleName != null and roleName != ''">
+                AND (ROLE_NAME like concat('%', concat(#{roleName}, '%')))
+           	</if>
+           	<if test="roleCode != null and roleCode != ''">
+                AND ROLE_CODE = #{roleCode}
+           	</if>
+           	<if test="roleParent != null and roleParent != ''">
+                AND ROLE_PARENT = #{roleParent}
+           	</if>
+           	<if test="status != null and status != ''">
+                AND STATUS = #{status}
+           	</if>
+           	<if test="createPro != null and createPro != ''">
+                AND CREATE_PRO = #{createPro}
+           	</if>
+           	<if test="createTimeBegin != null and createTimeBegin != ''">
+            	AND CREATE_TIME >= #{createTimeBegin}
+           	</if>
+           	<if test="createTimeEnd != null and createTimeEnd != ''">
+                <![CDATA[ AND CREATE_TIME <= #{createTimeEnd} ]]>
+           	</if>
+           	<if test="updatePro != null and updatePro != ''">
+                AND UPDATE_PRO = #{updatePro}
+           	</if>
+           	<if test="updateTimeBegin != null and updateTimeBegin != ''">
+            	AND UPDATE_TIME >= #{updateTimeBegin}
+           	</if>
+           	<if test="updateTimeEnd != null and updateTimeEnd != ''">
+                <![CDATA[ AND UPDATE_TIME <= #{updateTimeEnd} ]]>
+           	</if>
+           	<if test="menuAuthority != null and menuAuthority != ''">
+                AND MENU_AUTHORITY = #{menuAuthority}
+           	</if>
+           	<if test="operation != null and operation != ''">
+                AND OPERATION = #{operation}
+           	</if>
+        </where>
+        <if test="orderByExpression != null and orderByExpression != ''">
+				${orderByExpression}
+		</if>
+    </sql>
+    
+    <select id="getById" resultType="com.crv.erais.model.EraisRoles">
+        SELECT
+            <include refid="columns" />
+        FROM
+            erais_roles
+        <where>
+            ID = #{id} 
+        </where>
+    </select>
+    
+    <select id="getByCondition" resultType="com.crv.erais.model.EraisRoles">
+        SELECT
+            <include refid="columns" />
+        FROM
+            erais_roles 
+        <include refid="where"/>
+    </select>
+    
+    <select id="list" resultMap="EraisRolesMapPage">
+        SELECT
+            <include refid="columnsPage" />
+        FROM
+		(SELECT A.*,b.ROLE_NAME as parentRoleName  from erais_roles a,(SELECT * FROM  erais_roles) b where a.ROLE_PARENT=b.id) temp
+
+		<include refid="where"/>
+    </select>
+    
+    <select id="listByIds" resultMap="EraisRolesMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            erais_roles 
+        <where>
+            ID IN
+	        <foreach collection="items" item="item" open="(" separator="," close=")">
+#{item}	        </foreach>
+        </where>
+    </select>
+    
+    <insert id="save" >
+    	INSERT INTO erais_roles
+    	<trim prefix="(" suffix=")" suffixOverrides=",">
+   			<if test="id != null">
+            	ID,
+            </if>
+   			<if test="roleName != null">
+            	ROLE_NAME,
+            </if>
+   			<if test="roleCode != null">
+            	ROLE_CODE,
+            </if>
+   			<if test="roleParent != null">
+            	ROLE_PARENT,
+            </if>
+   			<if test="status != null">
+            	STATUS,
+            </if>
+   			<if test="createPro != null">
+            	CREATE_PRO,
+            </if>
+   			<if test="createTime != null">
+            	CREATE_TIME,
+            </if>
+   			<if test="updatePro != null">
+            	UPDATE_PRO,
+            </if>
+   			<if test="updateTime != null">
+            	UPDATE_TIME,
+            </if>
+   			<if test="menuAuthority != null">
+            	MENU_AUTHORITY,
+            </if>
+   			<if test="operation != null">
+            	OPERATION,
+            </if>
+    	</trim>
+    	VALUES
+    	<trim prefix="(" suffix=")" suffixOverrides=",">
+    	    <if test="id != null">
+        		#{id},
+        	</if>
+    	    <if test="roleName != null">
+        		#{roleName},
+        	</if>
+    	    <if test="roleCode != null">
+        		#{roleCode},
+        	</if>
+    	    <if test="roleParent != null">
+        		#{roleParent},
+        	</if>
+    	    <if test="status != null">
+        		#{status},
+        	</if>
+    	    <if test="createPro != null">
+        		#{createPro},
+        	</if>
+    	    <if test="createTime != null">
+        		#{createTime},
+        	</if>
+    	    <if test="updatePro != null">
+        		#{updatePro},
+        	</if>
+    	    <if test="updateTime != null">
+        		#{updateTime},
+        	</if>
+    	    <if test="menuAuthority != null">
+        		#{menuAuthority},
+        	</if>
+    	    <if test="operation != null">
+        		#{operation},
+        	</if>
+    	</trim>
+    </insert>
+    
+    <insert id="saveBatch">
+        INSERT INTO erais_roles (
+            ID,
+            ROLE_NAME,
+            ROLE_CODE,
+            ROLE_PARENT,
+            STATUS,
+            CREATE_PRO,
+            CREATE_TIME,
+            UPDATE_PRO,
+            UPDATE_TIME,
+            MENU_AUTHORITY,
+            OPERATION
+        ) VALUES
+        <foreach collection="items" item="item" separator=",">
+	        (
+	        	#{item.id},
+	        	#{item.roleName},
+	        	#{item.roleCode},
+	        	#{item.roleParent},
+	        	#{item.status},
+	        	#{item.createPro},
+	        	#{item.createTime},
+	        	#{item.updatePro},
+	        	#{item.updateTime},
+	        	#{item.menuAuthority},
+	        	#{item.operation}
+	        )
+        </foreach>
+    </insert>
+    
+    <update id="update">
+	    UPDATE
+	        	erais_roles
+	    	<set>
+	        	<if test="roleName != null">
+	        		ROLE_NAME = #{roleName},
+	        	</if>
+	        	<if test="roleCode != null">
+	        		ROLE_CODE = #{roleCode},
+	        	</if>
+	        	<if test="roleParent != null">
+	        		ROLE_PARENT = #{roleParent},
+	        	</if>
+	        	<if test="status != null">
+	        		STATUS = #{status},
+	        	</if>
+	        	<if test="createPro != null">
+	        		CREATE_PRO = #{createPro},
+	        	</if>
+	        	<if test="createTime != null">
+	        		CREATE_TIME = #{createTime},
+	        	</if>
+	        	<if test="updatePro != null">
+	        		UPDATE_PRO = #{updatePro},
+	        	</if>
+	        	<if test="updateTime != null">
+	        		UPDATE_TIME = #{updateTime},
+	        	</if>
+	        	<if test="menuAuthority != null">
+	        		MENU_AUTHORITY = #{menuAuthority},
+	        	</if>
+	        	<if test="operation != null">
+	        		OPERATION = #{operation}
+	        	</if>
+	    	</set>
+	    	<where>
+	            ID = #{id} 
+	    	</where>
+<!--     	UPDATE
+        	erais_roles
+    	<set>
+        	ROLE_NAME = #{roleName},
+        	ROLE_CODE = #{roleCode},
+        	ROLE_PARENT = #{roleParent},
+        	STATUS = #{status},
+        	CREATE_PRO = #{createPro},
+        	CREATE_TIME = #{createTime},
+        	UPDATE_PRO = #{updatePro},
+        	UPDATE_TIME = #{updateTime},
+        	MENU_AUTHORITY = #{menuAuthority},
+        	OPERATION = #{operation}
+    	</set>
+    	<where>
+            ID = #{id} 
+    	</where> -->
+    </update>
+
+	<update id="updateBatch">
+		<foreach collection="items" item="item" open="" close="" separator=";">
+			UPDATE
+				erais_roles
+			<set>
+				ROLE_NAME = #{item.roleName},
+				ROLE_CODE = #{item.roleCode},
+				ROLE_PARENT = #{item.roleParent},
+				STATUS = #{item.status},
+				CREATE_PRO = #{item.createPro},
+				CREATE_TIME = #{item.createTime},
+				UPDATE_PRO = #{item.updatePro},
+				UPDATE_TIME = #{item.updateTime},
+				MENU_AUTHORITY = #{item.menuAuthority},
+				OPERATION = #{item.operation}
+			</set>
+			<where>
+				ID = #{id} 
+			</where>
+		</foreach>
+	</update>
+    
+    <update id="updateSelective">
+    	UPDATE
+        	erais_roles
+    	<set>
+        	<if test="roleName != null">
+        		ROLE_NAME = #{roleName},
+        	</if>
+        	<if test="roleCode != null">
+        		ROLE_CODE = #{roleCode},
+        	</if>
+        	<if test="roleParent != null">
+        		ROLE_PARENT = #{roleParent},
+        	</if>
+        	<if test="status != null">
+        		STATUS = #{status},
+        	</if>
+        	<if test="createPro != null">
+        		CREATE_PRO = #{createPro},
+        	</if>
+        	<if test="createTime != null">
+        		CREATE_TIME = #{createTime},
+        	</if>
+        	<if test="updatePro != null">
+        		UPDATE_PRO = #{updatePro},
+        	</if>
+        	<if test="updateTime != null">
+        		UPDATE_TIME = #{updateTime},
+        	</if>
+        	<if test="menuAuthority != null">
+        		MENU_AUTHORITY = #{menuAuthority},
+        	</if>
+        	<if test="operation != null">
+        		OPERATION = #{operation}
+        	</if>
+    	</set>
+    	<where>
+            ID = #{id} 
+    	</where>
+    </update>
+    
+    <update id="updateBatchSelective">
+    	<foreach collection="items" item="item" open="" close="" separator=";">
+    	    UPDATE
+	        	erais_roles
+	    	<set>
+	        	<if test="item.roleName != null">
+	        		ROLE_NAME = #{item.roleName},
+	        	</if>
+	        	<if test="item.roleCode != null">
+	        		ROLE_CODE = #{item.roleCode},
+	        	</if>
+	        	<if test="item.roleParent != null">
+	        		ROLE_PARENT = #{item.roleParent},
+	        	</if>
+	        	<if test="item.status != null">
+	        		STATUS = #{item.status},
+	        	</if>
+	        	<if test="item.createPro != null">
+	        		CREATE_PRO = #{item.createPro},
+	        	</if>
+	        	<if test="item.createTime != null">
+	        		CREATE_TIME = #{item.createTime},
+	        	</if>
+	        	<if test="item.updatePro != null">
+	        		UPDATE_PRO = #{item.updatePro},
+	        	</if>
+	        	<if test="item.updateTime != null">
+	        		UPDATE_TIME = #{item.updateTime},
+	        	</if>
+	        	<if test="item.menuAuthority != null">
+	        		MENU_AUTHORITY = #{item.menuAuthority},
+	        	</if>
+	        	<if test="item.operation != null">
+	        		OPERATION = #{item.operation}
+	        	</if>
+	    	</set>
+	    	<where>
+	            ID = #{item.id} 
+	    	</where>
+    	</foreach>
+    </update>
+    
+    <delete id="delete">
+        DELETE FROM
+            erais_roles
+        <where>
+            ID = #{id} 
+       	</where>
+    </delete>
+    
+    <delete id="deleteBatch">
+        DELETE FROM
+            erais_roles
+        <where>
+            ID IN
+	        <foreach collection="items" item="item" open="(" separator="," close=")">
+#{item}	        </foreach>
+        </where>
+    </delete>
+    
+   	<select id="count" resultType="long">
+        SELECT
+            COUNT(1)
+        FROM
+            erais_roles
+        <include refid="where"/>
+    </select>
+    
+    <update id="clearCache"></update>
+</mapper>
