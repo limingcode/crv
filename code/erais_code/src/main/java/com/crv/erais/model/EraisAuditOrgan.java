@@ -27,7 +27,7 @@ public class EraisAuditOrgan extends BaseEntity{
     @Phone
     private String phone;
     @Excel(column = "D", name = "禁用启用")
-    private Integer status = 1;// 1启用 2：禁用
+    private Integer status;// 1启用 2：禁用
 
     private String createPro;
     @Excel(column = "C", name = "排序")
@@ -41,5 +41,10 @@ public class EraisAuditOrgan extends BaseEntity{
     private String updatePro;
 
     private Date updateTime;
+
+    /**
+     * 上级机构名称
+     */
+    private String topOrganName;
 
 }

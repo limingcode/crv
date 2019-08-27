@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.crv.erais.common.utils.ValidatorUtils;
+import com.crv.erais.dao.EraisRolesMapper;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -159,7 +160,7 @@ public class EraisRolesBizService {
 		//eraisRoles.setCreatePro("");
 		//数据非空验证
 		validator.validator(eraisRoles);
-		List<EraisRoles> list = eraisRolesDataService.list(eraisRoles);
+		List<EraisRoles> list = eraisRolesDataService.getList(eraisRoles);
 		if(list !=null && list.size()>0){
 			throw new BusinessException(1,"角色名称不能重复。");
 		}
@@ -177,7 +178,7 @@ public class EraisRolesBizService {
 		validator.validator(eraisRoles);
 		EraisRoles eraisRoles1 = new EraisRoles();
 		eraisRoles1.setRoleName(eraisRoles.getRoleName());
-		List<EraisRoles> list = eraisRolesDataService.list(eraisRoles1);
+		List<EraisRoles> list = eraisRolesDataService.getList(eraisRoles1);
 		if(list !=null){
 			if(list.size()>1){
 				throw new BusinessException(1,"角色名称不能重复。");
@@ -207,4 +208,9 @@ public class EraisRolesBizService {
     	}
     	eraisRolesDataService.delete(id);
     }
+
+	public void updateStatus(EraisRoles eraisRoles){
+
+		eraisRolesDataService.update(eraisRoles);
+	}
 }

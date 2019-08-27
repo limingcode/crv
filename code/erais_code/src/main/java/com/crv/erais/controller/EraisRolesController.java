@@ -9,16 +9,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import com.crv.erais.model.common.Result;
 import com.crv.erais.common.tools.PageUtil;
 import com.crv.erais.common.tools.TableDataInfo;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import com.crv.erais.model.EraisRoles;
 import com.crv.erais.service.bizservice.EraisRolesBizService;
 
@@ -154,4 +149,22 @@ public class EraisRolesController {
 		eraisRolesBizService.delete(id);
 		return Result.success();
 	}
+	/**
+	 * 修改状态
+	 *
+	 * @author: JW
+	 * @date: 2019-08-27 14:52:27
+	 * @param id 数据ID
+	 * @return Result<Object>
+	 */
+	@GetMapping("/eraisRoles/updateStatus")
+	public Result updateStatus(@RequestParam("id") String id, @RequestParam("status")  int status) {
+		EraisRoles eraisRoles = new EraisRoles();
+		eraisRoles.setId(id);
+		eraisRoles.setStatus(status);
+		eraisRolesBizService.updateStatus(eraisRoles);
+		return Result.success();
+	}
+
+
 }

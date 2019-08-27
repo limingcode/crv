@@ -61,7 +61,6 @@ public class EraisBeAuditOrgan extends BaseEntity implements Serializable{
      * code 
      */
     @Excel(column = "C", name = "部门编号")
-    @NotEmpty  ( message = "编码不能为空")
     private String code;
     
     /**
@@ -84,7 +83,7 @@ public class EraisBeAuditOrgan extends BaseEntity implements Serializable{
      * 默认为ERAIS 系统
      */
     @NotEmpty( message = "数据来源不能为空")
-    private String dataSource="ERAIS ";
+    private String dataSource;
     
 
 }

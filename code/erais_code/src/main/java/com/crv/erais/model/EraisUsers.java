@@ -10,6 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class EraisUsers extends BaseEntity implements Serializable {
@@ -41,7 +42,7 @@ public class EraisUsers extends BaseEntity implements Serializable {
     /**
      * 状态 1启用  2 禁用 
      */
-    private Integer status =1;
+    private Integer status;
     
     /**
      * 创建人 
@@ -93,5 +94,10 @@ public class EraisUsers extends BaseEntity implements Serializable {
      * 用户所属组织机构名称
      */
     private  String depName;
+
+    /**
+     * 用户对应的角色集合
+     */
+    private List<EraisUsersRoles> usersRolesList;
 }
 

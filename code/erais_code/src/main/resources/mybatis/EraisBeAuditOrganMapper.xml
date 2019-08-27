@@ -396,4 +396,56 @@
     </select>
     
     <update id="clearCache"></update>
+
+	<select id="getAllList" resultMap="EraisBeAuditOrganMap">
+		SELECT
+		<include refid="columns" />
+		FROM
+		erais_be_audit_organ
+		<include refid="whereCheck"/>
+	</select>
+
+	<sql id="whereCheck">
+		<where>
+			<if test="id != null and id != ''">
+				AND ID = #{id}
+			</if>
+			<if test="topDepartmentId != null and topDepartmentId != ''">
+				AND TOP_DEPARTMENT_ID = #{topDepartmentId}
+			</if>
+			<if test="departmentName != null and departmentName != ''">
+				AND DEPARTMENT_NAME =#{departmentName}
+			</if>
+			<if test="status != null and status != ''">
+				AND STATUS = #{status}
+			</if>
+			<if test="createPro != null and createPro != ''">
+				AND CREATE_PRO = #{createPro}
+			</if>
+			<if test="sort != null and sort != ''">
+				AND SORT = #{sort}
+			</if>
+			<if test="code != null and code != ''">
+				AND CODE = #{code}
+			</if>
+			<if test="createTimeBegin != null and createTimeBegin != ''">
+				AND CREATE_TIME >= #{createTimeBegin}
+			</if>
+			<if test="createTimeEnd != null and createTimeEnd != ''">
+				<![CDATA[ AND CREATE_TIME <= #{createTimeEnd} ]]>
+			</if>
+			<if test="updatePro != null and updatePro != ''">
+				AND UPDATE_PRO = #{updatePro}
+			</if>
+			<if test="updateTimeBegin != null and updateTimeBegin != ''">
+				AND UPDATE_TIME >= #{updateTimeBegin}
+			</if>
+			<if test="updateTimeEnd != null and updateTimeEnd != ''">
+				<![CDATA[ AND UPDATE_TIME <= #{updateTimeEnd} ]]>
+			</if>
+			<if test="dataSource != null and dataSource != ''">
+				AND DATA_SOURCE = #{dataSource}
+			</if>
+		</where>
+	</sql>
 </mapper>

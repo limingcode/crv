@@ -18,6 +18,8 @@
         <result property="updateTime" column="updateTime"/>
         <result property="menuAuthority" column="menuAuthority"/>
         <result property="operation" column="operation"/>
+		<result property="sort" column="sort"/>
+
 
     </resultMap>
 
@@ -34,6 +36,7 @@
 		<result property="menuAuthority" column="menuAuthority"/>
 		<result property="operation" column="operation"/>
 		<result property="parentRoleName" column="parentRoleName"/>
+		<result property="sort" column="sort"/>
 
 	</resultMap>
     
@@ -48,6 +51,7 @@
         UPDATE_PRO AS updatePro,
         UPDATE_TIME AS updateTime,
         MENU_AUTHORITY AS menuAuthority,
+        SORT AS sort,
         OPERATION AS operation
     </sql>
 
@@ -63,6 +67,7 @@
         UPDATE_TIME AS updateTime,
         MENU_AUTHORITY AS menuAuthority,
         OPERATION AS operation,
+        SORT AS sort,
         parentRoleName as  parentRoleName
     </sql>
 
@@ -107,6 +112,9 @@
            	<if test="operation != null and operation != ''">
                 AND OPERATION = #{operation}
            	</if>
+			<if test="sort != null and sort != ''">
+				AND SORT = #{sort}
+			</if>
         </where>
         <if test="orderByExpression != null and orderByExpression != ''">
 				${orderByExpression}
@@ -135,7 +143,8 @@
         SELECT
             <include refid="columnsPage" />
         FROM
-		(SELECT A.*,b.ROLE_NAME as parentRoleName  from erais_roles a,(SELECT * FROM  erais_roles) b where a.ROLE_PARENT=b.id) temp
+		( SELECT A.*,B.ROLE_NAME as parentRoleName FROM ERAIS_ROLES A LEFT JOIN (SELECT * FROM ERAIS_ROLES WHERE ID IN (SELECT ROLE_PARENT FROM
+		ERAIS_ROLES WHERE ROLE_PARENT IS NOT NULL )) B ON A.ROLE_PARENT= B.ID) temp
 
 		<include refid="where"/>
     </select>
@@ -188,6 +197,9 @@
    			<if test="operation != null">
             	OPERATION,
             </if>
+			<if test="sort != null">
+				SORT,
+			</if>
     	</trim>
     	VALUES
     	<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -224,6 +236,9 @@
     	    <if test="operation != null">
         		#{operation},
         	</if>
+			<if test="sort != null">
+				#{sort},
+			</if>
     	</trim>
     </insert>
     
@@ -239,6 +254,7 @@
             UPDATE_PRO,
             UPDATE_TIME,
             MENU_AUTHORITY,
+		    SORT,
             OPERATION
         ) VALUES
         <foreach collection="items" item="item" separator=",">
@@ -253,6 +269,7 @@
 	        	#{item.updatePro},
 	        	#{item.updateTime},
 	        	#{item.menuAuthority},
+			    #{item.sort},
 	        	#{item.operation}
 	        )
         </foreach>
@@ -289,6 +306,9 @@
 	        	<if test="menuAuthority != null">
 	        		MENU_AUTHORITY = #{menuAuthority},
 	        	</if>
+				<if test="sort != null">
+					SORT = #{sort},
+				</if>
 	        	<if test="operation != null">
 	        		OPERATION = #{operation}
 	        	</if>
@@ -329,6 +349,7 @@
 				UPDATE_PRO = #{item.updatePro},
 				UPDATE_TIME = #{item.updateTime},
 				MENU_AUTHORITY = #{item.menuAuthority},
+				SORT= #{item.sort},
 				OPERATION = #{item.operation}
 			</set>
 			<where>
@@ -368,6 +389,9 @@
         	<if test="menuAuthority != null">
         		MENU_AUTHORITY = #{menuAuthority},
         	</if>
+			<if test="sort != null">
+				SORT = #{sort},
+			</if>
         	<if test="operation != null">
         		OPERATION = #{operation}
         	</if>
@@ -409,6 +433,9 @@
 	        	<if test="item.menuAuthority != null">
 	        		MENU_AUTHORITY = #{item.menuAuthority},
 	        	</if>
+				<if test="item.sort != null">
+					SORT = #{item.sort},
+				</if>
 	        	<if test="item.operation != null">
 	        		OPERATION = #{item.operation}
 	        	</if>
@@ -444,6 +471,33 @@
             erais_roles
         <include refid="where"/>
     </select>
-    
-    <update id="clearCache"></update>
+
+
+	<select id="allList" resultMap="EraisRolesMapPage">
+		SELECT
+		<include refid="columns" />
+		FROM
+		erais_roles
+		<where>
+
+		<if test="roleName != null and roleName != ''">
+			 ROLE_NAME =#{roleName}
+		</if>
+		<if test="roleCode != null and roleCode != ''">
+			AND ROLE_CODE = #{roleCode}
+		</if>
+		<if test="roleParent != null and roleParent != ''">
+			AND ROLE_PARENT = #{roleParent}
+		</if>
+		<if test="status != null and status != ''">
+			AND STATUS = #{status}
+		</if>
+		<if test="updatePro != null and updatePro != ''">
+			AND UPDATE_PRO = #{updatePro}
+		</if>
+		<if test="menuAuthority != null and menuAuthority != ''">
+			AND MENU_AUTHORITY = #{menuAuthority}
+		</if>
+		</where>
+	</select>
 </mapper>

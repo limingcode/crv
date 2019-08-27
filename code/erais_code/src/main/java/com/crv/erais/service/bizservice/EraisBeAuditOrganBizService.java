@@ -156,11 +156,14 @@ public class EraisBeAuditOrganBizService {
 		eraisBeAuditOrgan.setId(UUIDUtils.getUUID());
 		eraisBeAuditOrgan.setCreateTime(new Date());
 		eraisBeAuditOrgan.setUpdateTime(new Date());
+		eraisBeAuditOrgan.setDataSource("ERAIS");//新增数据默认来源为 ERAIS
 		//创建人
 		//eraisBeAuditOrgan.setCreatePro("");
 		//数据非空验证
 		validator.validator(eraisBeAuditOrgan);
-		List<EraisBeAuditOrgan> list = eraisBeAuditOrganDataService.list(eraisBeAuditOrgan);
+		EraisBeAuditOrgan reqEraisBeAuditOrgan = new EraisBeAuditOrgan();
+		reqEraisBeAuditOrgan.setDepartmentName(eraisBeAuditOrgan.getDepartmentName());
+		List<EraisBeAuditOrgan> list = eraisBeAuditOrganDataService.getAllList(reqEraisBeAuditOrgan);
 		if(list !=null && list.size()>0){
 			throw new BusinessException(1,"非审计机构名称不能重复。");
 		}
@@ -179,7 +182,7 @@ public class EraisBeAuditOrganBizService {
 		validator.validator(eraisBeAuditOrgan);
 		EraisBeAuditOrgan eraisBeAuditOrgan1 = new EraisBeAuditOrgan();
 		eraisBeAuditOrgan1.setDepartmentName(eraisBeAuditOrgan.getDepartmentName());
-		List<EraisBeAuditOrgan> list = eraisBeAuditOrganDataService.list(eraisBeAuditOrgan1);
+		List<EraisBeAuditOrgan> list = eraisBeAuditOrganDataService.getAllList(eraisBeAuditOrgan1);
 		if(list !=null){
 			if(list.size()>1){
 				throw new BusinessException(1,"非审计机构名称不能重复。");

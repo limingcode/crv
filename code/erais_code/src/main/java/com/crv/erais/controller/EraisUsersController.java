@@ -179,4 +179,15 @@ public class EraisUsersController {
 		eraisUsersBizService.delete(id);
 		return Result.success();
 	}
+
+	/**
+	 * 删除用户配置的角色
+	 * @param id
+	 * @return Result
+	 */
+	@GetMapping("/eraisUsers/deleteUserRole/{id}")
+	public Result deleteUserRole(@PathVariable("id") String id){
+		eraisUsersBizService.deleteUserRole(id);
+		return Result.success();
+	}
 }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.crv.erais.model.EraisBeAuditOrgan;
 import com.crv.erais.dao.EraisBeAuditOrganMapper;
 
+import java.util.List;
+
 @Service("eraisBeAuditOrganDataService")
 public class EraisBeAuditOrganDataService extends BaseService<EraisBeAuditOrgan> {
 
@@ -15,5 +17,9 @@ public class EraisBeAuditOrganDataService extends BaseService<EraisBeAuditOrgan>
 
     public EraisBeAuditOrganDataService(EraisBeAuditOrganMapper eraisBeAuditOrganMapper) {
         super(eraisBeAuditOrganMapper);
+    }
+
+    public List<EraisBeAuditOrgan> getAllList(EraisBeAuditOrgan eraisBeAuditOrgan){
+        return  eraisBeAuditOrganMapper.getAllList(eraisBeAuditOrgan);
     }
 }
