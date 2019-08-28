@@ -259,4 +259,15 @@ public class EraisUsersBizService {
 		}
 		eraisUsersRolesDataService.delete(id);
 	}
+
+	/**
+	 * 批量删除
+	 * @param ids
+	 */
+	public void deleteBatch (List<String> ids){
+		eraisUsersDataService.deleteBatch(ids);
+	}
+	public void updateStatus(EraisUsers eraisUsers){
+		eraisUsersDataService.update(eraisUsers);
+	}
 }

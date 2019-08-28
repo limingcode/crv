@@ -26,7 +26,7 @@ public class DepController {
     @GetMapping("/dep/getListByParentId")
     public Result getListByParentId(@RequestParam("parentId") String parentId){
         JSONObject depResult = JSONObject.parseObject(
-                template.getForObject("http://10.239.16.30:18081/upm/dept/list?parentId"+parentId,String.class));
+                template.getForObject("http://10.239.16.30:18081/upm/dept/list?parentId="+parentId,String.class));
         if (depResult.getInteger("code")==0){
             return Result.success(depResult.toJSONString());
         }else {

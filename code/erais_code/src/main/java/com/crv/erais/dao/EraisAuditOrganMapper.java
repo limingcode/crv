@@ -15,4 +15,5 @@ public interface EraisAuditOrganMapper {
     public void save(EraisAuditOrgan organ);
     public void update(EraisAuditOrgan organ);
     public void deleteById(String Id);
+    public void deleteBatch(@Param("items")  List<String> ids);
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.crv.erais.common.utils.SeriaNumberGeneratorUtils;
 import com.crv.erais.common.utils.ValidatorUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +27,7 @@ public class EraisBeAuditOrganBizService {
     private EraisBeAuditOrganDataService eraisBeAuditOrganDataService;
 	@Autowired
 	private ValidatorUtils validator;
+	private  static final String DATA_SOURCE ="ERAIS";
     /**
      * 根据id查询
      *
@@ -156,7 +158,8 @@ public class EraisBeAuditOrganBizService {
 		eraisBeAuditOrgan.setId(UUIDUtils.getUUID());
 		eraisBeAuditOrgan.setCreateTime(new Date());
 		eraisBeAuditOrgan.setUpdateTime(new Date());
-		eraisBeAuditOrgan.setDataSource("ERAIS");//新增数据默认来源为 ERAIS
+		eraisBeAuditOrgan.setDataSource(DATA_SOURCE);//新增数据默认来源为 ERAIS
+		eraisBeAuditOrgan.setCode(SeriaNumberGeneratorUtils.getSeriaNumberGenerator());
 		//创建人
 		//eraisBeAuditOrgan.setCreatePro("");
 		//数据非空验证
@@ -180,6 +183,11 @@ public class EraisBeAuditOrganBizService {
 	public void update(EraisBeAuditOrgan eraisBeAuditOrgan) {
 		//数据非空验证
 		validator.validator(eraisBeAuditOrgan);
+		if(StringUtils.isEmpty(eraisBeAuditOrgan.getDataSource())){
+			if(eraisBeAuditOrgan.getDataSource().equals(DATA_SOURCE)){
+				throw new BusinessException(1,"数据来源为 "+DATA_SOURCE +"的不能修改");
+			}
+		}
 		EraisBeAuditOrgan eraisBeAuditOrgan1 = new EraisBeAuditOrgan();
 		eraisBeAuditOrgan1.setDepartmentName(eraisBeAuditOrgan.getDepartmentName());
 		List<EraisBeAuditOrgan> list = eraisBeAuditOrganDataService.getAllList(eraisBeAuditOrgan1);
@@ -212,4 +220,14 @@ public class EraisBeAuditOrganBizService {
     	}
     	eraisBeAuditOrganDataService.delete(id);
     }
+	/**
+	 * 批量删除
+	 * @param ids
+	 */
+	public void deleteBatch (List<String> ids){
+		eraisBeAuditOrganDataService.deleteBatch(ids);
+	}
+	public void updateStatus(EraisBeAuditOrgan eraisBeAuditOrgan){
+		eraisBeAuditOrganDataService.update(eraisBeAuditOrgan);
+	}
 }

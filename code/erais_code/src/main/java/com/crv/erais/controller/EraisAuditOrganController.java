@@ -43,12 +43,12 @@ public class EraisAuditOrganController extends BaseController {
      * 获取所有
      * @return
      */
-    @PostMapping("/getPageList")
+    @PostMapping("/page")
     public Result getPageList(EraisAuditOrgan organ) {
         TableDataInfo info = eraisAuditOrganService.getPageList(organ);
         return Result.success(info);
     }
-    @GetMapping("/getById")
+    @GetMapping("/get")
     public Result getById(String Id) {
         if (StringUtils.isEmpty(Id))
         {
@@ -58,7 +58,7 @@ public class EraisAuditOrganController extends BaseController {
         EraisAuditOrgan organ = eraisAuditOrganService.getById(Id);
         return Result.success(organ);
     }
-    @GetMapping("/deleteById")
+    @GetMapping("/delete")
     public Result deleteById(String Id) {
         if (StringUtils.isEmpty(Id))
         {
@@ -69,11 +69,11 @@ public class EraisAuditOrganController extends BaseController {
         return Result.success();
     }
     /**
-     * 分页
+     * 无分页
      * @param organ
      * @return
      */
-    @GetMapping("/getList")
+    @PostMapping("/list")
     public Result getList(EraisAuditOrgan organ) {
         List<EraisAuditOrgan> list = eraisAuditOrganService.getList(organ);
         return Result.success(list);
@@ -223,5 +223,40 @@ public class EraisAuditOrganController extends BaseController {
             Result.failure(1,"导入失败");
         }
         return Result.success(resList);
+    }
+    /**
+     *  @param ids
+     * @return Result
+     */
+    @GetMapping("/deleteBatch")
+    public Result deleteBatch(@RequestParam(value = "ids") String  ids){
+        try {
+            if (StringUtils.isEmpty(ids)) {
+                return Result.failure(1,"请求列表为空");
+            }
+            List<String> idsList = com.crv.erais.common.StringUtils.strSplit(ids);
+            eraisAuditOrganService.deleteBatch(idsList);
+        }catch (Exception e){
+            e.getMessage();
+            logger.error("删除审计机构失败"+e.getMessage());
+            return Result.failure(1,"删除审计机构失败");
+        }
+        return Result.success();
+    }
+    /**
+     * 修改状态
+     *
+     * @author: JW
+     * @date: 2019-08-27 14:52:27
+     * @param id 数据ID
+     * @return Result<Object>
+     */
+    @GetMapping("/updateStatus")
+    public Result updateStatus(@RequestParam("id") String id, @RequestParam("status")  int status) {
+        EraisAuditOrgan eraisAuditOrgan = new EraisAuditOrgan();
+        eraisAuditOrgan.setId(id);
+        eraisAuditOrgan.setStatus(status);
+        eraisAuditOrganService.updateStatus(eraisAuditOrgan);
+        return Result.success();
     }
 }

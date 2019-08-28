@@ -42,7 +42,6 @@ public class EraisBeAuditOrgan extends BaseEntity implements Serializable{
      * status 
      */
     @Excel(column = "D", name = "状态")
-    @NotEmpty  ( message = "状态不能为空")
     private Integer status;
     
     /**
@@ -53,7 +52,6 @@ public class EraisBeAuditOrgan extends BaseEntity implements Serializable{
     /**
      * sort 
      */
-    @NotEmpty  ( message = "排序不能为空")
     @Excel(column = "E", name = "排序")
     private Integer sort;
     

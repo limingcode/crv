@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.crv.erais.common.exception.BusinessException;
+import com.crv.erais.model.EraisRoles;
 import com.crv.erais.model.User;
 import com.crv.erais.model.common.ResultCode;
 import org.apache.commons.lang3.StringUtils;
@@ -190,4 +191,40 @@ public class EraisUsersController {
 		eraisUsersBizService.deleteUserRole(id);
 		return Result.success();
 	}
+	/**
+	 *  @param ids
+	 * @return Result
+	 */
+	@GetMapping("/eraisUsers/deleteBatch")
+	public Result deleteBatch(@RequestParam(value = "ids") String  ids){
+		try {
+			if (StringUtils.isEmpty(ids)) {
+				return Result.failure(1,"请求列表为空");
+			}
+			List<String> idsList = com.crv.erais.common.StringUtils.strSplit(ids);
+			eraisUsersBizService.deleteBatch(idsList);
+		}catch (Exception e){
+			e.getMessage();
+			logger.error("删除用户失败"+e.getMessage());
+			return Result.failure(1,"删除用户失败");
+		}
+		return Result.success();
+	}
+	/**
+	 * 修改状态
+	 *
+	 * @author: JW
+	 * @date: 2019-08-27 14:52:27
+	 * @param id 数据ID
+	 * @return Result<Object>
+	 */
+	@GetMapping("/eraisUsers/updateStatus")
+	public Result updateStatus(@RequestParam("id") String id, @RequestParam("status")  int status) {
+		EraisUsers eraisUsers = new EraisUsers();
+		eraisUsers.setId(id);
+		eraisUsers.setStatus(status);
+		eraisUsersBizService.updateStatus(eraisUsers);
+		return Result.success();
+	}
+
 }

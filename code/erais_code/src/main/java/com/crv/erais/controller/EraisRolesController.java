@@ -1,10 +1,12 @@
 package com.crv.erais.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.crv.erais.common.exception.BusinessException;
 import com.crv.erais.common.utils.ValidatorUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -166,5 +168,24 @@ public class EraisRolesController {
 		return Result.success();
 	}
 
+	/**
+	 *  @param ids
+	 * @return Result
+	 */
+	@GetMapping("/eraisRoles/deleteBatch")
+    public Result deleteBatch(@RequestParam(value = "ids") String  ids){
+		try {
+			if (StringUtils.isEmpty(ids)) {
+				return Result.failure(1,"请求列表为空");
+			}
+			List<String> idsList = com.crv.erais.common.StringUtils.strSplit(ids);
+			eraisRolesBizService.deleteBatch(idsList);
+		}catch (Exception e){
+			e.getMessage();
+			logger.error("删除角色失败"+e.getMessage());
+			return Result.failure(1,"删除角色失败");
+		}
+		return Result.success();
+	}
 
 }

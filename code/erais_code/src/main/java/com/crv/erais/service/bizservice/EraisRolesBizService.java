@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.crv.erais.common.utils.SeriaNumberGeneratorUtils;
 import com.crv.erais.common.utils.ValidatorUtils;
 import com.crv.erais.dao.EraisRolesMapper;
 import org.apache.commons.collections4.CollectionUtils;
@@ -156,6 +157,8 @@ public class EraisRolesBizService {
 		eraisRoles.setId(UUIDUtils.getUUID());
 		eraisRoles.setUpdateTime(new Date());
 		eraisRoles.setCreateTime(new Date());
+		//17位流水
+		eraisRoles.setRoleCode(SeriaNumberGeneratorUtils.getSeriaNumberGenerator());
 		//创建人
 		//eraisRoles.setCreatePro("");
 		//数据非空验证
@@ -212,5 +215,13 @@ public class EraisRolesBizService {
 	public void updateStatus(EraisRoles eraisRoles){
 
 		eraisRolesDataService.update(eraisRoles);
+	}
+
+	/**
+	 * 批量删除
+	 * @param ids
+	 */
+	public  void deleteBatch(List<String>  ids){
+		eraisRolesDataService.deleteBatch(ids);
 	}
 }

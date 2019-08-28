@@ -51,10 +51,10 @@ public class EraisAuditOrganServiceImpl implements EraisAuditOrganService {
 
     @Override
     public void save(EraisAuditOrgan organ)  {
-        if (StringUtils.isEmpty(organ.getCode())){
-            //生成17位流水
-            organ.setCode(SeriaNumberGeneratorUtils.getSeriaNumberGenerator());
-        }
+
+        //生成17位流水
+        organ.setCode(SeriaNumberGeneratorUtils.getSeriaNumberGenerator());
+
         organ.setId(UUIDUtils.getUUID());
         organ.setCreateTime( new Date());
         organ.setUpdateTime(new Date());
@@ -65,10 +65,8 @@ public class EraisAuditOrganServiceImpl implements EraisAuditOrganService {
         EraisAuditOrgan eraisAuditOrgan = new EraisAuditOrgan();
         eraisAuditOrgan.setName(organ.getName());
         List<EraisAuditOrgan> list =  eraisAuditOrganMapper.getList(eraisAuditOrgan);
-        if (list != null){
-            if (list.size()>1){
+        if (list != null && list.size()>0){
                 throw new BusinessException(1,"审计机构名称不能重复。");
-            }
         }
         eraisAuditOrganMapper.save(organ);
     }
@@ -93,5 +91,15 @@ public class EraisAuditOrganServiceImpl implements EraisAuditOrganService {
        // organ.setUpdatePro("");
         organ.setUpdateTime(new Date());
         eraisAuditOrganMapper.update(organ);
+    }
+
+    @Override
+    public void deleteBatch(List<String> ids) {
+        eraisAuditOrganMapper.deleteBatch(ids);
+    }
+
+    @Override
+    public void updateStatus(EraisAuditOrgan eraisAuditOrgan) {
+        eraisAuditOrganMapper.update(eraisAuditOrgan);
     }
 }

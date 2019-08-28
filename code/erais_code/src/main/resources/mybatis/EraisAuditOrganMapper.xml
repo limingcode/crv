@@ -328,4 +328,14 @@
       UPDATE_TIME = #{updateTime,jdbcType=DATE}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+
+  <delete id="deleteBatch">
+    DELETE FROM
+       ERAIS_AUDIT_ORGAN
+    <where>
+      ID IN
+      <foreach collection="items" item="item" open="(" separator="," close=")">
+        #{item}	        </foreach>
+    </where>
+  </delete>
 </mapper>

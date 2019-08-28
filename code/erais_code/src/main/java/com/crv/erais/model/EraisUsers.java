@@ -72,7 +72,7 @@ public class EraisUsers extends BaseEntity implements Serializable {
     private String phone;
     
     /**
-
+      *岗位名称
      */
     private String jobName;
     
