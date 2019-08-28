@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crv.erais.sys.manage.mapper.AuditEventMapper">
+    <resultMap id="BaseResultMap" type="EraisAuditEvent">
+        <result column="NUMBERR" property="numberr"/>
+        <result column="AUDIT_EVENT" property="auditEvent" />
+        <result column="EVENT_CLASS" property="eventClass" />
+        <result column="APPLAY_PROJECT" property="applayProject"/>
+        <result column="APPLR_MONAD" property="applrMonad"/>
+        <result column="MONAD_LEVEL" property="monadLevel" />
+        <result column="MUST_PROJECT" property="mustProject" />
+        <result column="MANAGE_CLASS" property="manageClass" />
+        <result column="STATUS" property="status" />
+        <result column="REMARK" property="remark" />
+        <result column="EVENT_ID" property="eventId" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    NUMBERR, AUDIT_EVENT, EVENT_CLASS, APPLAY_PROJECT, APPLR_MONAD, MONAD_LEVEL, MUST_PROJECT,
+    MANAGE_CLASS, STATUS, REMARK,EVENT_ID
+  </sql>
+    <select id="selectAll" resultType="EraisAuditEvent">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        ERAIS_AUDIT_EVENT
+    </select>
+    <insert id="insert">
+insert into ERAIS_AUDIT_EVENT (NUMBERR, AUDIT_EVENT, EVENT_CLASS,
+      APPLAY_PROJECT, APPLR_MONAD, MONAD_LEVEL,
+      MUST_PROJECT, MANAGE_CLASS, STATUS,
+      REMARK,EVENT_ID)
+    values (#{numberr,jdbcType=VARCHAR}, #{auditEvent,jdbcType=VARCHAR}, #{eventClass,jdbcType=VARCHAR},
+      #{applayProject,jdbcType=VARCHAR}, #{applrMonad,jdbcType=VARCHAR}, #{monadLevel,jdbcType=VARCHAR},
+      #{mustProject,jdbcType=VARCHAR}, #{manageClass,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+      #{remark,jdbcType=VARCHAR},#{EVENT_ID,jdbcType=VARCHAR})
+    </insert>
+   <select id="selectByExample" resultType="EraisAuditEvent" >
+      SELECT
+      <include refid="Base_Column_List"/>
+       from ERAIS_AUDIT_EVENT
+       <where>
+           <if test="enevtName!=null and enevtName!='' ">
+               AUDIT_EVENT="团购定义"
+
+
+           </if>
+       </where>
+
+
+   </select>
+
+    <delete id="delete" flushCache="true">
+      	delete  from ERAIS_AUDIT_EVENT where event_id =#{dictId}
+    </delete>
+    <delete id="deleteBatch" flushCache="true">
+        delete  from ERAIS_AUDIT_EVENT where event_id in
+        <foreach collection="array" item = "ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </delete>
+</mapper>

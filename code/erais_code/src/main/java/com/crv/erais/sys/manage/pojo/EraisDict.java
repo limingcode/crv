@@ -16,6 +16,7 @@ public class EraisDict {
      * "low_status" NUMBER NULL ,
      * "remark" NUMBER NULL
      */
+
     //字典项名称
     private String dictName;
     //字典项编码
@@ -26,6 +27,7 @@ public class EraisDict {
     private String low_status;
     //备注
     private String remark;
+
 
 
 

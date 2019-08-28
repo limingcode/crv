@@ -21,8 +21,10 @@ public class DictController {
     private DictService dictService;
     /*
     控制器的处理 数据字典
+
      */
     @RequestMapping("findAll")
+
     public List<EraisDict> findAll(){
         List<EraisDict> dictList = dictService.findAll();
         return dictList;

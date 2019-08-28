@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crv.erais.dao.EraisBeAuditOrganMapper">
+
+    <resultMap id="EraisBeAuditOrganMap" type="com.crv.erais.model.EraisBeAuditOrgan">
+        <result property="id" column="id"/>
+        <result property="topDepartmentId" column="topDepartmentId"/>
+        <result property="departmentName" column="departmentName"/>
+        <result property="status" column="status"/>
+        <result property="createPro" column="createPro"/>
+        <result property="sort" column="sort"/>
+        <result property="code" column="code"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updatePro" column="updatePro"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="dataSource" column="dataSource"/>
+    </resultMap>
+    
+    <sql id="columns">
+        ID AS id,
+        TOP_DEPARTMENT_ID AS topDepartmentId,
+        DEPARTMENT_NAME AS departmentName,
+        STATUS AS status,
+        CREATE_PRO AS createPro,
+        SORT AS sort,
+        CODE AS code,
+        CREATE_TIME AS createTime,
+        UPDATE_PRO AS updatePro,
+        UPDATE_TIME AS updateTime,
+        DATA_SOURCE AS dataSource
+    </sql>
+
+    <sql id="where">
+    	<where>
+           	<if test="id != null and id != ''">
+                AND ID = #{id}
+           	</if>
+           	<if test="topDepartmentId != null and topDepartmentId != ''">
+                AND TOP_DEPARTMENT_ID = #{topDepartmentId}
+           	</if>
+           	<if test="departmentName != null and departmentName != ''">
+                AND (DEPARTMENT_NAME like concat('%', concat(#{departmentName}, '%')))
+           	</if>
+           	<if test="status != null and status != ''">
+                AND STATUS = #{status}
+           	</if>
+           	<if test="createPro != null and createPro != ''">
+                AND CREATE_PRO = #{createPro}
+           	</if>
+           	<if test="sort != null and sort != ''">
+                AND SORT = #{sort}
+           	</if>
+           	<if test="code != null and code != ''">
+                AND CODE = #{code}
+           	</if>
+           	<if test="createTimeBegin != null and createTimeBegin != ''">
+            	AND CREATE_TIME >= #{createTimeBegin}
+           	</if>
+           	<if test="createTimeEnd != null and createTimeEnd != ''">
+                <![CDATA[ AND CREATE_TIME <= #{createTimeEnd} ]]>
+           	</if>
+           	<if test="updatePro != null and updatePro != ''">
+                AND UPDATE_PRO = #{updatePro}
+           	</if>
+           	<if test="updateTimeBegin != null and updateTimeBegin != ''">
+            	AND UPDATE_TIME >= #{updateTimeBegin}
+           	</if>
+           	<if test="updateTimeEnd != null and updateTimeEnd != ''">
+                <![CDATA[ AND UPDATE_TIME <= #{updateTimeEnd} ]]>
+           	</if>
+           	<if test="dataSource != null and dataSource != ''">
+                AND DATA_SOURCE = #{dataSource}
+           	</if>
+			<if test="searchValue != null and searchValue != ''">
+			 AND (DEPARTMENT_NAME like concat('%', concat(#{searchValue}, '%')))
+			</if>
+        </where>
+        <if test="orderByExpression != null and orderByExpression != ''">
+			${orderByExpression}
+		</if>
+    </sql>
+    
+    <select id="getById" resultType="com.crv.erais.model.EraisBeAuditOrgan">
+        SELECT
+            <include refid="columns" />
+        FROM
+            erais_be_audit_organ
+        <where>
+            ID = #{id} 
+        </where>
+    </select>
+    
+    <select id="getByCondition" resultType="com.crv.erais.model.EraisBeAuditOrgan">
+        SELECT
+            <include refid="columns" />
+        FROM
+            erais_be_audit_organ 
+        <include refid="where"/>
+    </select>
+    
+    <select id="list" resultMap="EraisBeAuditOrganMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            erais_be_audit_organ 
+        <include refid="where"/>
+    </select>
+    
+    <select id="listByIds" resultMap="EraisBeAuditOrganMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            erais_be_audit_organ 
+        <where>
+            ID IN
+	        <foreach collection="items" item="item" open="(" separator="," close=")">
+#{item}	        </foreach>
+        </where>
+    </select>
+    
+    <insert id="save" >
+    	INSERT INTO erais_be_audit_organ
+    	<trim prefix="(" suffix=")" suffixOverrides=",">
+   			<if test="id != null">
+            	ID,
+            </if>
+   			<if test="topDepartmentId != null">
+            	TOP_DEPARTMENT_ID,
+            </if>
+   			<if test="departmentName != null">
+            	DEPARTMENT_NAME,
+            </if>
+   			<if test="status != null">
+            	STATUS,
+            </if>
+   			<if test="createPro != null">
+            	CREATE_PRO,
+            </if>
+   			<if test="sort != null">
+            	SORT,
+            </if>
+   			<if test="code != null">
+            	CODE,
+            </if>
+   			<if test="createTime != null">
+            	CREATE_TIME,
+            </if>
+   			<if test="updatePro != null">
+            	UPDATE_PRO,
+            </if>
+   			<if test="updateTime != null">
+            	UPDATE_TIME,
+            </if>
+   			<if test="dataSource != null">
+            	DATA_SOURCE,
+            </if>
+    	</trim>
+    	VALUES
+    	<trim prefix="(" suffix=")" suffixOverrides=",">
+    	    <if test="id != null">
+        		#{id},
+        	</if>
+    	    <if test="topDepartmentId != null">
+        		#{topDepartmentId},
+        	</if>
+    	    <if test="departmentName != null">
+        		#{departmentName},
+        	</if>
+    	    <if test="status != null">
+        		#{status},
+        	</if>
+    	    <if test="createPro != null">
+        		#{createPro},
+        	</if>
+    	    <if test="sort != null">
+        		#{sort},
+        	</if>
+    	    <if test="code != null">
+        		#{code},
+        	</if>
+    	    <if test="createTime != null">
+        		#{createTime},
+        	</if>
+    	    <if test="updatePro != null">
+        		#{updatePro},
+        	</if>
+    	    <if test="updateTime != null">
+        		#{updateTime},
+        	</if>
+    	    <if test="dataSource != null">
+        		#{dataSource},
+        	</if>
+    	</trim>
+    </insert>
+    
+    <insert id="saveBatch">
+        INSERT INTO erais_be_audit_organ (
+            ID,
+            TOP_DEPARTMENT_ID,
+            DEPARTMENT_NAME,
+            STATUS,
+            CREATE_PRO,
+            SORT,
+            CODE,
+            CREATE_TIME,
+            UPDATE_PRO,
+            UPDATE_TIME,
+            DATA_SOURCE
+        ) VALUES
+        <foreach collection="items" item="item" separator=",">
+	        (
+	        	#{item.id},
+	        	#{item.topDepartmentId},
+	        	#{item.departmentName},
+	        	#{item.status},
+	        	#{item.createPro},
+	        	#{item.sort},
+	        	#{item.code},
+	        	#{item.createTime},
+	        	#{item.updatePro},
+	        	#{item.updateTime},
+	        	#{item.dataSource}
+	        )
+        </foreach>
+    </insert>
+    
+    <update id="update">
+		UPDATE
+		erais_be_audit_organ
+		<set>
+			<if test="topDepartmentId != null">
+				TOP_DEPARTMENT_ID = #{topDepartmentId},
+			</if>
+			<if test="departmentName != null">
+				DEPARTMENT_NAME = #{departmentName},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>
+			<if test="createPro != null">
+				CREATE_PRO = #{createPro},
+			</if>
+			<if test="sort != null">
+				SORT = #{sort},
+			</if>
+			<if test="code != null">
+				CODE = #{code},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime},
+			</if>
+			<if test="updatePro != null">
+				UPDATE_PRO = #{updatePro},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime},
+			</if>
+			<if test="dataSource != null">
+				DATA_SOURCE = #{dataSource}
+			</if>
+		</set>
+		<where>
+			ID = #{id}
+		</where>
+    </update>
+
+	<update id="updateBatch">
+		<foreach collection="items" item="item" open="" close="" separator=";">
+			UPDATE
+				erais_be_audit_organ
+			<set>
+				TOP_DEPARTMENT_ID = #{item.topDepartmentId},
+				DEPARTMENT_NAME = #{item.departmentName},
+				STATUS = #{item.status},
+				CREATE_PRO = #{item.createPro},
+				SORT = #{item.sort},
+				CODE = #{item.code},
+				CREATE_TIME = #{item.createTime},
+				UPDATE_PRO = #{item.updatePro},
+				UPDATE_TIME = #{item.updateTime},
+				DATA_SOURCE = #{item.dataSource}
+			</set>
+			<where>
+				ID = #{id} 
+			</where>
+		</foreach>
+	</update>
+    
+    <update id="updateSelective">
+    	UPDATE
+        	erais_be_audit_organ
+    	<set>
+        	<if test="topDepartmentId != null">
+        		TOP_DEPARTMENT_ID = #{topDepartmentId},
+        	</if>
+        	<if test="departmentName != null">
+        		DEPARTMENT_NAME = #{departmentName},
+        	</if>
+        	<if test="status != null">
+        		STATUS = #{status},
+        	</if>
+        	<if test="createPro != null">
+        		CREATE_PRO = #{createPro},
+        	</if>
+        	<if test="sort != null">
+        		SORT = #{sort},
+        	</if>
+        	<if test="code != null">
+        		CODE = #{code},
+        	</if>
+        	<if test="createTime != null">
+        		CREATE_TIME = #{createTime},
+        	</if>
+        	<if test="updatePro != null">
+        		UPDATE_PRO = #{updatePro},
+        	</if>
+        	<if test="updateTime != null">
+        		UPDATE_TIME = #{updateTime},
+        	</if>
+        	<if test="dataSource != null">
+        		DATA_SOURCE = #{dataSource}
+        	</if>
+    	</set>
+    	<where>
+            ID = #{id} 
+    	</where>
+    </update>
+    
+    <update id="updateBatchSelective">
+    	<foreach collection="items" item="item" open="" close="" separator=";">
+    	    UPDATE
+	        	erais_be_audit_organ
+	    	<set>
+	        	<if test="item.topDepartmentId != null">
+	        		TOP_DEPARTMENT_ID = #{item.topDepartmentId},
+	        	</if>
+	        	<if test="item.departmentName != null">
+	        		DEPARTMENT_NAME = #{item.departmentName},
+	        	</if>
+	        	<if test="item.status != null">
+	        		STATUS = #{item.status},
+	        	</if>
+	        	<if test="item.createPro != null">
+	        		CREATE_PRO = #{item.createPro},
+	        	</if>
+	        	<if test="item.sort != null">
+	        		SORT = #{item.sort},
+	        	</if>
+	        	<if test="item.code != null">
+	        		CODE = #{item.code},
+	        	</if>
+	        	<if test="item.createTime != null">
+	        		CREATE_TIME = #{item.createTime},
+	        	</if>
+	        	<if test="item.updatePro != null">
+	        		UPDATE_PRO = #{item.updatePro},
+	        	</if>
+	        	<if test="item.updateTime != null">
+	        		UPDATE_TIME = #{item.updateTime},
+	        	</if>
+	        	<if test="item.dataSource != null">
+	        		DATA_SOURCE = #{item.dataSource}
+	        	</if>
+	    	</set>
+	    	<where>
+	            ID = #{item.id} 
+	    	</where>
+    	</foreach>
+    </update>
+    
+    <delete id="delete">
+        DELETE FROM
+            erais_be_audit_organ
+        <where>
+            ID = #{id} 
+       	</where>
+    </delete>
+    
+    <delete id="deleteBatch">
+        DELETE FROM
+            erais_be_audit_organ
+        <where>
+            ID IN
+	        <foreach collection="items" item="item" open="(" separator="," close=")">
+#{item}	        </foreach>
+        </where>
+    </delete>
+    
+   	<select id="count" resultType="long">
+        SELECT
+            COUNT(1)
+        FROM
+            erais_be_audit_organ
+        <include refid="where"/>
+    </select>
+    
+    <update id="clearCache"></update>
+</mapper>
