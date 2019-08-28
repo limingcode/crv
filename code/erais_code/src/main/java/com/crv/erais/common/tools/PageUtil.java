@@ -21,6 +21,7 @@ public class PageUtil {
         TableDataInfo rspData = new TableDataInfo();
         rspData.setRows(list);
         rspData.setTotal(new PageInfo(list).getTotal());
+        rspData.setPageNum(new PageInfo(list).getPageNum());
         return rspData;
     }
 

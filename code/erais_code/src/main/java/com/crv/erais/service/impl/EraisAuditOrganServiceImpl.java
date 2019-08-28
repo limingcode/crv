@@ -1,12 +1,15 @@
 package com.crv.erais.service.impl;
 
 import com.crv.erais.common.StringUtils;
+import com.crv.erais.common.exception.BusinessException;
 import com.crv.erais.common.tools.PageUtil;
 import com.crv.erais.common.tools.TableDataInfo;
+import com.crv.erais.common.utils.CheckPhoneUtils;
+import com.crv.erais.common.utils.SeriaNumberGeneratorUtils;
 import com.crv.erais.common.utils.UUIDUtils;
+import com.crv.erais.common.utils.ValidatorUtils;
 import com.crv.erais.dao.EraisAuditOrganMapper;
 import com.crv.erais.model.EraisAuditOrgan;
-import com.crv.erais.model.Organizational;
 import com.crv.erais.service.EraisAuditOrganService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +22,9 @@ public class EraisAuditOrganServiceImpl implements EraisAuditOrganService {
 
 
     @Autowired
-    private EraisAuditOrganMapper eraisAuditOrganMapper;
+    private EraisAuditOrganMapper  eraisAuditOrganMapper;
+    @Autowired
+    private ValidatorUtils validator;
     @Override
     public TableDataInfo getPageList(EraisAuditOrgan organ) {
         PageUtil.startPage(organ);
@@ -45,23 +50,56 @@ public class EraisAuditOrganServiceImpl implements EraisAuditOrganService {
     }
 
     @Override
-    public void save(EraisAuditOrgan organ) {
-        if (organ.getStatus() == null){
-            organ.setStatus(1);//启用   2 禁用
-        }else {
-            if(StringUtils.isEmpty(organ.getStatus().toString())){
-                organ.setStatus(1);//启用   2 禁用
-            }
-        }
+    public void save(EraisAuditOrgan organ)  {
+
+        //生成17位流水
+        organ.setCode(SeriaNumberGeneratorUtils.getSeriaNumberGenerator());
+
         organ.setId(UUIDUtils.getUUID());
         organ.setCreateTime( new Date());
         organ.setUpdateTime(new Date());
+        //创建人
+        //organ.setCreatePro("");
+        validator.validator(organ);
+
+        EraisAuditOrgan eraisAuditOrgan = new EraisAuditOrgan();
+        eraisAuditOrgan.setName(organ.getName());
+        List<EraisAuditOrgan> list =  eraisAuditOrganMapper.getList(eraisAuditOrgan);
+        if (list != null && list.size()>0){
+                throw new BusinessException(1,"审计机构名称不能重复。");
+        }
         eraisAuditOrganMapper.save(organ);
     }
 
     @Override
     public void update(EraisAuditOrgan organ) {
+        validator.validator(organ);
+        EraisAuditOrgan eraisAuditOrgan = new EraisAuditOrgan();
+        eraisAuditOrgan.setName(organ.getName());
+        List<EraisAuditOrgan> list =  eraisAuditOrganMapper.getList(eraisAuditOrgan);
+        if (list != null){
+            if (list.size()>1){
+                throw new BusinessException(1,"审计机构名称不能重复。");
+            } else if(list.size()==1){
+                String id = list.get(0).getId();
+                if (!organ.getId().equals(id)){
+                    throw new BusinessException(1,"审计机构名称不能重复。");
+                }
+            }
+        }
+        //更新人
+       // organ.setUpdatePro("");
         organ.setUpdateTime(new Date());
         eraisAuditOrganMapper.update(organ);
+    }
+
+    @Override
+    public void deleteBatch(List<String> ids) {
+        eraisAuditOrganMapper.deleteBatch(ids);
+    }
+
+    @Override
+    public void updateStatus(EraisAuditOrgan eraisAuditOrgan) {
+        eraisAuditOrganMapper.update(eraisAuditOrgan);
     }
 }

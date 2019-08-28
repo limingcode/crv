@@ -2,6 +2,7 @@ package com.crv.erais.dao;
 
 import com.crv.erais.model.Organizational;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,4 +24,11 @@ public interface OrganizationalMapper {
 	 * @return List<Organizational>
 	 */
 	public List<Organizational> pageList(Organizational org);
+
+	/**
+	 * 根据ID获取
+	 * @param id
+	 * @return
+	 */
+	public Organizational getById(@Param("id") String id);
 }

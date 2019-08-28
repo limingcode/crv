@@ -10,6 +10,10 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 
 @Data
 public class EraisUsers extends BaseEntity implements Serializable {
@@ -41,7 +45,11 @@ public class EraisUsers extends BaseEntity implements Serializable {
     /**
      * 状态 1启用  2 禁用 
      */
+<<<<<<< HEAD
     private Integer status =1;
+=======
+    private Integer status;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
     
     /**
      * 创建人 
@@ -71,7 +79,11 @@ public class EraisUsers extends BaseEntity implements Serializable {
     private String phone;
     
     /**
+<<<<<<< HEAD
 
+=======
+      *岗位名称
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
      */
     private String jobName;
     
@@ -93,5 +105,13 @@ public class EraisUsers extends BaseEntity implements Serializable {
      * 用户所属组织机构名称
      */
     private  String depName;
+<<<<<<< HEAD
+=======
+
+    /**
+     * 用户对应的角色集合
+     */
+    private List<EraisUsersRoles> usersRolesList;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 }
 

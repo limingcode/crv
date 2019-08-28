@@ -10,6 +10,10 @@ import com.crv.erais.common.exception.BusinessException;
 import com.crv.erais.common.utils.ExcelUtil;
 import com.crv.erais.common.utils.ValidatorUtils;
 import com.crv.erais.model.EraisAuditOrgan;
+<<<<<<< HEAD
+=======
+import com.crv.erais.model.EraisUsers;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -260,4 +264,42 @@ public class EraisBeAuditOrganController {
 		}
 		return Result.success(resList);
 	}
+<<<<<<< HEAD
+=======
+	/**
+	 *  @param ids
+	 * @return Result
+	 */
+	@GetMapping("/eraisBeAuditOrgan/deleteBatch")
+	public Result deleteBatch(@RequestParam(value = "ids") String  ids){
+		try {
+			if (StringUtils.isEmpty(ids)) {
+				return Result.failure(1,"请求列表为空");
+			}
+			List<String> idsList = com.crv.erais.common.StringUtils.strSplit(ids);
+			eraisBeAuditOrganBizService.deleteBatch(idsList);
+		}catch (Exception e){
+			e.getMessage();
+			logger.error("删除被审计机构失败"+e.getMessage());
+			return Result.failure(1,"删除被审计机构失败");
+		}
+		return Result.success();
+	}
+	/**
+	 * 修改状态
+	 *
+	 * @author: JW
+	 * @date: 2019-08-27 14:52:27
+	 * @param id 数据ID
+	 * @return Result<Object>
+	 */
+	@GetMapping("/eraisBeAuditOrgan/updateStatus")
+	public Result updateStatus(@RequestParam("id") String id, @RequestParam("status")  int status) {
+		EraisBeAuditOrgan beAuditOrgan = new EraisBeAuditOrgan();
+		beAuditOrgan.setId(id);
+		beAuditOrgan.setStatus(status);
+		eraisBeAuditOrganBizService.updateStatus(beAuditOrgan);
+		return Result.success();
+	}
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 }

@@ -55,7 +55,27 @@ public class BaseEntity {
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
+    /**
+     * 按创建时间--从 ****开始到 *** ----
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date createTimeBegin;
+    /**
+     * 按创建时间--从 ****开始到 ***结束 ----
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date createTimeEnd;
 
+    /**
+     * 按更新时间--从 ****开始到 *** ----
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date updateTimeBegin;
+    /**
+     * 按更新时间--从 ****开始到 ***结束 ----
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date updateTimeEnd;
     /**
      * 更新者
      */

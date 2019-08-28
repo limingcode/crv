@@ -42,7 +42,10 @@ public class EraisBeAuditOrgan extends BaseEntity implements Serializable{
      * status 
      */
     @Excel(column = "D", name = "状态")
+<<<<<<< HEAD
     @NotEmpty  ( message = "状态不能为空")
+=======
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
     private Integer status;
     
     /**
@@ -53,7 +56,10 @@ public class EraisBeAuditOrgan extends BaseEntity implements Serializable{
     /**
      * sort 
      */
+<<<<<<< HEAD
     @NotEmpty  ( message = "排序不能为空")
+=======
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
     @Excel(column = "E", name = "排序")
     private Integer sort;
     
@@ -61,7 +67,10 @@ public class EraisBeAuditOrgan extends BaseEntity implements Serializable{
      * code 
      */
     @Excel(column = "C", name = "部门编号")
+<<<<<<< HEAD
     @NotEmpty  ( message = "编码不能为空")
+=======
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
     private String code;
     
     /**
@@ -84,7 +93,11 @@ public class EraisBeAuditOrgan extends BaseEntity implements Serializable{
      * 默认为ERAIS 系统
      */
     @NotEmpty( message = "数据来源不能为空")
+<<<<<<< HEAD
     private String dataSource="ERAIS ";
+=======
+    private String dataSource;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
     
 
 }

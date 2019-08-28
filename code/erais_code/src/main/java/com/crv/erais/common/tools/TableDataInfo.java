@@ -19,6 +19,8 @@ public class TableDataInfo implements Serializable {
 
     /** 列表数据 */
     private List<?> rows;
+    /** 页码数 */
+    private long pageNum;
 
     /**
      * 表格数据对象

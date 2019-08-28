@@ -1,14 +1,23 @@
 package com.crv.erais.controller;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 import java.util.List;
 import java.util.Map;
 
 import com.crv.erais.common.exception.BusinessException;
 import com.crv.erais.common.utils.ValidatorUtils;
+<<<<<<< HEAD
+=======
+import org.apache.commons.collections4.CollectionUtils;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +28,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+=======
+import org.springframework.web.bind.annotation.*;
+import com.crv.erais.model.common.Result;
+import com.crv.erais.common.tools.PageUtil;
+import com.crv.erais.common.tools.TableDataInfo;
+import org.springframework.web.bind.annotation.PathVariable;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 import com.crv.erais.model.EraisRoles;
 import com.crv.erais.service.bizservice.EraisRolesBizService;
 
@@ -154,4 +170,44 @@ public class EraisRolesController {
 		eraisRolesBizService.delete(id);
 		return Result.success();
 	}
+<<<<<<< HEAD
+=======
+	/**
+	 * 修改状态
+	 *
+	 * @author: JW
+	 * @date: 2019-08-27 14:52:27
+	 * @param id 数据ID
+	 * @return Result<Object>
+	 */
+	@GetMapping("/eraisRoles/updateStatus")
+	public Result updateStatus(@RequestParam("id") String id, @RequestParam("status")  int status) {
+		EraisRoles eraisRoles = new EraisRoles();
+		eraisRoles.setId(id);
+		eraisRoles.setStatus(status);
+		eraisRolesBizService.updateStatus(eraisRoles);
+		return Result.success();
+	}
+
+	/**
+	 *  @param ids
+	 * @return Result
+	 */
+	@GetMapping("/eraisRoles/deleteBatch")
+    public Result deleteBatch(@RequestParam(value = "ids") String  ids){
+		try {
+			if (StringUtils.isEmpty(ids)) {
+				return Result.failure(1,"请求列表为空");
+			}
+			List<String> idsList = com.crv.erais.common.StringUtils.strSplit(ids);
+			eraisRolesBizService.deleteBatch(idsList);
+		}catch (Exception e){
+			e.getMessage();
+			logger.error("删除角色失败"+e.getMessage());
+			return Result.failure(1,"删除角色失败");
+		}
+		return Result.success();
+	}
+
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 }

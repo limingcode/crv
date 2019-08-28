@@ -1,5 +1,7 @@
 package com.crv.erais.common;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -287,6 +289,14 @@ public class StringUtils {
             result.append(camel.substring(1).toLowerCase());
         }
         return result.toString();
+    }
+    public static List<String> strSplit(String ids){
+        String [] idStr = ids.split(",");
+        List<String> idsList = new ArrayList<String>();
+        for (int i=0;i<idStr.length;i++){
+            idsList.add(idStr[i]);
+        }
+        return idsList;
     }
 
 }
