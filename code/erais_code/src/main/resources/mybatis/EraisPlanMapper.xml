@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crv.erais.dao.EraisPlanMapper">
+
+	<!-- 启用redis缓存 -->
+	<!-- <cache type="com.km.redis.mybatis.MybatisRedisCache" eviction="LRU"/> -->
+
+    <resultMap id="EraisPlanMap" type="com.crv.erais.model.EraisPlan">
+        <result property="id" column="id"/>
+        <result property="planName" column="planName"/>
+        <result property="planCode" column="planCode"/>
+        <result property="type" column="type"/>
+        <result property="year" column="year"/>
+        <result property="status" column="status"/>
+        <result property="createPro" column="createPro"/>
+        <result property="maintainPeople" column="maintainPeople"/>
+        <result property="maintainPeopleId" column="maintainPeopleId"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updateTime" column="updateTime"/>
+    </resultMap>
+    
+    <sql id="columns">
+        ID AS id,
+        PLAN_NAME AS planName,
+        PLAN_CODE AS planCode,
+        TYPE AS type,
+        YEAR AS year,
+        STATUS AS status,
+        CREATE_PRO AS createPro,
+        MAINTAIN_PEOPLE AS maintainPeople,
+        MAINTAIN_PEOPLE_ID AS maintainPeopleId,
+        CREATE_TIME AS createTime,
+        UPDATE_TIME AS updateTime
+    </sql>
+
+    <sql id="where">
+    	<where>
+           	<if test="id != null and id != ''">
+                AND ID = #{id}
+        	</if>
+           	<if test="planName != null and planName != ''">
+                AND PLAN_NAME = #{planName}
+        	</if>
+           	<if test="planCode != null and planCode != ''">
+                AND PLAN_CODE = #{planCode}
+        	</if>
+           	<if test="type != null and type != ''">
+                AND TYPE = #{type}
+        	</if>
+           	<if test="year != null and year != ''">
+                AND YEAR = #{year}
+        	</if>
+           	<if test="status != null and status != ''">
+                AND STATUS = #{status}
+        	</if>
+
+           	<if test="createPro != null and createPro != ''">
+                AND CREATE_PRO = #{createPro}
+        	</if>
+           	<if test="maintainPeople != null and maintainPeople != ''">
+                AND MAINTAIN_PEOPLE = #{maintainPeople}
+        	</if>
+           	<if test="maintainPeopleId != null and maintainPeopleId != ''">
+                AND MAINTAIN_PEOPLE_ID = #{maintainPeopleId}
+        	</if>
+
+           	<if test="createTimeBegin !=null">
+            	AND CREATE_TIME >= #{createTimeBegin}
+           	</if>
+           	<if test="createTimeEnd != null">
+                <![CDATA[ AND CREATE_TIME <= #{createTimeEnd} ]]>
+           	</if>
+
+           	<if test="updateTimeBegin !=null">
+            	AND UPDATE_TIME >= #{updateTimeBegin}
+           	</if>
+           	<if test="updateTimeEnd != null">
+                <![CDATA[ AND UPDATE_TIME <= #{updateTimeEnd} ]]>
+           	</if>
+        </where>
+        <if test="orderByExpression != null">
+${orderByExpression}        </if>
+    </sql>
+    
+    <select id="getById" resultType="com.crv.erais.model.EraisPlan">
+        SELECT
+            <include refid="columns" />
+        FROM
+            erais_plan
+        <where>
+            ID = #{id} 
+        </where>
+    </select>
+    
+    <select id="getByCondition" resultType="com.crv.erais.model.EraisPlan">
+        SELECT
+            <include refid="columns" />
+        FROM
+            erais_plan 
+        <include refid="where"/>
+    </select>
+    
+    <select id="list" resultMap="EraisPlanMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            erais_plan 
+        <include refid="where"/>
+    </select>
+    
+    <select id="listByIds" resultMap="EraisPlanMap">
+        SELECT
+            <include refid="columns" />
+        FROM
+            erais_plan 
+        <where>
+            ID IN
+	        <foreach collection="items" item="item" open="(" separator="," close=")">
+#{item}	        </foreach>
+        </where>
+    </select>
+    
+    <insert id="save" >
+    	INSERT INTO erais_plan
+    	<trim prefix="(" suffix=")" suffixOverrides=",">
+   			<if test="id != null">
+            	ID,
+            </if>
+   			<if test="planName != null">
+            	PLAN_NAME,
+            </if>
+   			<if test="planCode != null">
+            	PLAN_CODE,
+            </if>
+   			<if test="type != null">
+            	TYPE,
+            </if>
+   			<if test="year != null">
+            	YEAR,
+            </if>
+   			<if test="status != null">
+            	STATUS,
+            </if>
+   			<if test="createPro != null">
+            	CREATE_PRO,
+            </if>
+   			<if test="maintainPeople != null">
+            	MAINTAIN_PEOPLE,
+            </if>
+   			<if test="maintainPeopleId != null">
+            	MAINTAIN_PEOPLE_ID,
+            </if>
+   			<if test="createTime != null">
+            	CREATE_TIME,
+            </if>
+   			<if test="updateTime != null">
+            	UPDATE_TIME,
+            </if>
+    	</trim>
+    	VALUES
+    	<trim prefix="(" suffix=")" suffixOverrides=",">
+    	    <if test="id != null">
+        		#{id},
+        	</if>
+    	    <if test="planName != null">
+        		#{planName},
+        	</if>
+    	    <if test="planCode != null">
+        		#{planCode},
+        	</if>
+    	    <if test="type != null">
+        		#{type},
+        	</if>
+    	    <if test="year != null">
+        		#{year},
+        	</if>
+    	    <if test="status != null">
+        		#{status},
+        	</if>
+    	    <if test="createPro != null">
+        		#{createPro},
+        	</if>
+    	    <if test="maintainPeople != null">
+        		#{maintainPeople},
+        	</if>
+    	    <if test="maintainPeopleId != null">
+        		#{maintainPeopleId},
+        	</if>
+    	    <if test="createTime != null">
+        		#{createTime},
+        	</if>
+    	    <if test="updateTime != null">
+        		#{updateTime},
+        	</if>
+    	</trim>
+    </insert>
+    
+    <insert id="saveBatch">
+        INSERT INTO erais_plan (
+            ID,
+            PLAN_NAME,
+            PLAN_CODE,
+            TYPE,
+            YEAR,
+            STATUS,
+            CREATE_PRO,
+            MAINTAIN_PEOPLE,
+            MAINTAIN_PEOPLE_ID,
+            CREATE_TIME,
+            UPDATE_TIME
+        ) VALUES
+        <foreach collection="items" item="item" separator=",">
+	        (
+	        	#{item.id},
+	        	#{item.planName},
+	        	#{item.planCode},
+	        	#{item.type},
+	        	#{item.year},
+	        	#{item.status},
+	        	#{item.createPro},
+	        	#{item.maintainPeople},
+	        	#{item.maintainPeopleId},
+	        	#{item.createTime},
+	        	#{item.updateTime}
+	        )
+        </foreach>
+    </insert>
+    
+    <update id="update">
+	    UPDATE
+	        	erais_plan
+	    	<set>
+	        	<if test="planName != null">
+	        		PLAN_NAME = #{planName},
+	        	</if>
+	        	<if test="planCode != null">
+	        		PLAN_CODE = #{planCode},
+	        	</if>
+	        	<if test="type != null">
+	        		TYPE = #{type},
+	        	</if>
+	        	<if test="year != null">
+	        		YEAR = #{year},
+	        	</if>
+	        	<if test="status != null">
+	        		STATUS = #{status},
+	        	</if>
+	        	<if test="createPro != null">
+	        		CREATE_PRO = #{createPro},
+	        	</if>
+	        	<if test="maintainPeople != null">
+	        		MAINTAIN_PEOPLE = #{maintainPeople},
+	        	</if>
+	        	<if test="maintainPeopleId != null">
+	        		MAINTAIN_PEOPLE_ID = #{maintainPeopleId},
+	        	</if>
+	        	<if test="createTime != null">
+	        		CREATE_TIME = #{createTime},
+	        	</if>
+	        	<if test="updateTime != null">
+	        		UPDATE_TIME = #{updateTime}
+	        	</if>
+	    	</set>
+	    	<where>
+	            ID = #{id} 
+	    	</where>
+<!--     	UPDATE
+        	erais_plan
+    	<set>
+        	PLAN_NAME = #{planName},
+        	PLAN_CODE = #{planCode},
+        	TYPE = #{type},
+        	YEAR = #{year},
+        	STATUS = #{status},
+        	CREATE_PRO = #{createPro},
+        	MAINTAIN_PEOPLE = #{maintainPeople},
+        	MAINTAIN_PEOPLE_ID = #{maintainPeopleId},
+        	CREATE_TIME = #{createTime},
+        	UPDATE_TIME = #{updateTime}
+    	</set>
+    	<where>
+            ID = #{id} 
+    	</where> -->
+    </update>
+
+	<update id="updateBatch">
+		<foreach collection="items" item="item" open="" close="" separator=";">
+			UPDATE
+				erais_plan
+			<set>
+				PLAN_NAME = #{item.planName},
+				PLAN_CODE = #{item.planCode},
+				TYPE = #{item.type},
+				YEAR = #{item.year},
+				STATUS = #{item.status},
+				CREATE_PRO = #{item.createPro},
+				MAINTAIN_PEOPLE = #{item.maintainPeople},
+				MAINTAIN_PEOPLE_ID = #{item.maintainPeopleId},
+				CREATE_TIME = #{item.createTime},
+				UPDATE_TIME = #{item.updateTime}
+			</set>
+			<where>
+				ID = #{id} 
+			</where>
+		</foreach>
+	</update>
+    
+    <update id="updateSelective">
+    	UPDATE
+        	erais_plan
+    	<set>
+        	<if test="planName != null">
+        		PLAN_NAME = #{planName},
+        	</if>
+        	<if test="planCode != null">
+        		PLAN_CODE = #{planCode},
+        	</if>
+        	<if test="type != null">
+        		TYPE = #{type},
+        	</if>
+        	<if test="year != null">
+        		YEAR = #{year},
+        	</if>
+        	<if test="status != null">
+        		STATUS = #{status},
+        	</if>
+        	<if test="createPro != null">
+        		CREATE_PRO = #{createPro},
+        	</if>
+        	<if test="maintainPeople != null">
+        		MAINTAIN_PEOPLE = #{maintainPeople},
+        	</if>
+        	<if test="maintainPeopleId != null">
+        		MAINTAIN_PEOPLE_ID = #{maintainPeopleId},
+        	</if>
+        	<if test="createTime != null">
+        		CREATE_TIME = #{createTime},
+        	</if>
+        	<if test="updateTime != null">
+        		UPDATE_TIME = #{updateTime}
+        	</if>
+    	</set>
+    	<where>
+            ID = #{id} 
+    	</where>
+    </update>
+    
+    <update id="updateBatchSelective">
+    	<foreach collection="items" item="item" open="" close="" separator=";">
+    	    UPDATE
+	        	erais_plan
+	    	<set>
+	        	<if test="item.planName != null">
+	        		PLAN_NAME = #{item.planName},
+	        	</if>
+	        	<if test="item.planCode != null">
+	        		PLAN_CODE = #{item.planCode},
+	        	</if>
+	        	<if test="item.type != null">
+	        		TYPE = #{item.type},
+	        	</if>
+	        	<if test="item.year != null">
+	        		YEAR = #{item.year},
+	        	</if>
+	        	<if test="item.status != null">
+	        		STATUS = #{item.status},
+	        	</if>
+	        	<if test="item.createPro != null">
+	        		CREATE_PRO = #{item.createPro},
+	        	</if>
+	        	<if test="item.maintainPeople != null">
+	        		MAINTAIN_PEOPLE = #{item.maintainPeople},
+	        	</if>
+	        	<if test="item.maintainPeopleId != null">
+	        		MAINTAIN_PEOPLE_ID = #{item.maintainPeopleId},
+	        	</if>
+	        	<if test="item.createTime != null">
+	        		CREATE_TIME = #{item.createTime},
+	        	</if>
+	        	<if test="item.updateTime != null">
+	        		UPDATE_TIME = #{item.updateTime}
+	        	</if>
+	    	</set>
+	    	<where>
+	            ID = #{item.id} 
+	    	</where>
+    	</foreach>
+    </update>
+    
+    <delete id="delete">
+        DELETE FROM
+            erais_plan
+        <where>
+            ID = #{id} 
+       	</where>
+    </delete>
+    
+    <delete id="deleteBatch">
+        DELETE FROM
+            erais_plan
+        <where>
+            ID IN
+	        <foreach collection="items" item="item" open="(" separator="," close=")">
+#{item}	        </foreach>
+        </where>
+    </delete>
+    
+   	<select id="count" resultType="long">
+        SELECT
+            COUNT(1)
+        FROM
+            erais_plan
+        <include refid="where"/>
+    </select>
+    
+    <update id="clearCache"></update>
+</mapper>

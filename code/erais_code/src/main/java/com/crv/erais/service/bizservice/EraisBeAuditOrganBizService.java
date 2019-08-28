@@ -178,10 +178,12 @@ public class EraisBeAuditOrganBizService {
      *
      * @author: JW
      * @date: 2019-08-25 08:06:17
-     * @param eraisBeAuditOrgan 传输对象
+     * @param eraisBeAuditOrgan2 传输对象
      */
-	public void update(EraisBeAuditOrgan eraisBeAuditOrgan) {
+	public void update(EraisBeAuditOrgan eraisBeAuditOrgan2) {
 		//数据非空验证
+		EraisBeAuditOrgan eraisBeAuditOrgan = eraisBeAuditOrganDataService.getById(eraisBeAuditOrgan2.getId());
+		BeanUtils.copyProperties(eraisBeAuditOrgan2, eraisBeAuditOrgan);//前赋值给后对象
 		validator.validator(eraisBeAuditOrgan);
 		if(StringUtils.isEmpty(eraisBeAuditOrgan.getDataSource())){
 			if(eraisBeAuditOrgan.getDataSource().equals(DATA_SOURCE)){

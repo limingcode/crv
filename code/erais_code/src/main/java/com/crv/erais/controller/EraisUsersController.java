@@ -1,5 +1,6 @@
 package com.crv.erais.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +31,6 @@ public class EraisUsersController {
 
 	@Autowired
     private EraisUsersBizService eraisUsersBizService;
-	@Autowired
-	private RestTemplate template;
 
 	/**
 	 * 查询用户数据 支持分页
@@ -43,17 +42,21 @@ public class EraisUsersController {
 	 */
 	@GetMapping("/eraisUsers/getUserList")
 	public Result getUserList(@RequestParam("pageSize") int pageSize,@RequestParam("current")int current,
-							  @RequestParam("userName") String userName, @RequestParam("userAccount") String userAccount){
-		JSONObject userResult = JSONObject.parseObject(template.getForObject("http://10.239.16.30:18081/upm/user/page?pageSize="+pageSize+"&current="+current+"&userName="+userName+"&userAccount"+userAccount,String.class));
-
-		if (userResult.getInteger("code")==0){
-			JSONObject userJson = userResult.getJSONObject("data");
-			System.out.println("userJson.getString(\"records\")");
-			List<User> userList = JSON.parseArray(userJson.getString("records"), User.class);
-			return Result.success(userList);
-		}else {
-			return Result.failure(ResultCode.USER_NOT_EXIST,userResult.getString("msg"));
+							  @RequestParam("userName") String userName, @RequestParam("userAccount") String userAccount
+	,@RequestParam("deptCode") String deptCode){
+		List<User> userList = new ArrayList<User>();
+		try {
+			userList = eraisUsersBizService.getUserList ( pageSize, current, userAccount, userName,deptCode);
+			if (userList ==null) {
+				logger.error("调用第三方接口查询用户数据失败 userList="+userList);
+				return Result.failure(1, "查询失败");
+			}
+		}catch (Exception e){
+			e.getMessage();
+			logger.error("调用第三方接口查询用户数据失败"+e.getMessage());
+			return Result.failure(1, "查询失败");
 		}
+		return Result.success(userList);
 	}
 	/**
      * 根据id查询

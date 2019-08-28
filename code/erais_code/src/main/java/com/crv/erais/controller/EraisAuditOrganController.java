@@ -48,8 +48,8 @@ public class EraisAuditOrganController extends BaseController {
         TableDataInfo info = eraisAuditOrganService.getPageList(organ);
         return Result.success(info);
     }
-    @GetMapping("/get")
-    public Result getById(String Id) {
+    @GetMapping("/get/{id}")
+    public Result getById(@PathVariable("id") String Id) {
         if (StringUtils.isEmpty(Id))
         {
             logger.error("检测到审计机构ID为空ID"+Id);

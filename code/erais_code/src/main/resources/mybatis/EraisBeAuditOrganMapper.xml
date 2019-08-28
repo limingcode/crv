@@ -15,6 +15,7 @@
         <result property="updatePro" column="updatePro"/>
         <result property="updateTime" column="updateTime"/>
         <result property="dataSource" column="dataSource"/>
+		<result property="topDepartmentName" column="topDepartmentName"/>
     </resultMap>
     
     <sql id="columns">
@@ -28,6 +29,7 @@
         CREATE_TIME AS createTime,
         UPDATE_PRO AS updatePro,
         UPDATE_TIME AS updateTime,
+		TOP_DEPARTMENT_NAME AS topDepartmentName,
         DATA_SOURCE AS dataSource
     </sql>
 
@@ -74,6 +76,9 @@
            	</if>
 			<if test="searchValue != null and searchValue != ''">
 			 AND (DEPARTMENT_NAME like concat('%', concat(#{searchValue}, '%')))
+			</if>
+			<if test="topDepartmentName != null">
+				and  TOP_DEPARTMENT_NAME = #{topDepartmentName}
 			</if>
         </where>
         <if test="orderByExpression != null and orderByExpression != ''">
@@ -152,6 +157,9 @@
    			<if test="updateTime != null">
             	UPDATE_TIME,
             </if>
+			<if test="topDepartmentName != null">
+				TOP_DEPARTMENT_NAME,
+			</if>
    			<if test="dataSource != null">
             	DATA_SOURCE,
             </if>
@@ -188,6 +196,9 @@
     	    <if test="updateTime != null">
         		#{updateTime},
         	</if>
+			<if test="topDepartmentName != null">
+				#{topDepartmentName},
+			</if>
     	    <if test="dataSource != null">
         		#{dataSource},
         	</if>
@@ -206,6 +217,7 @@
             CREATE_TIME,
             UPDATE_PRO,
             UPDATE_TIME,
+		    TOP_DEPARTMENT_NAME,
             DATA_SOURCE
         ) VALUES
         <foreach collection="items" item="item" separator=",">
@@ -220,6 +232,7 @@
 	        	#{item.createTime},
 	        	#{item.updatePro},
 	        	#{item.updateTime},
+			    #{item.topDepartmentName},
 	        	#{item.dataSource}
 	        )
         </foreach>
@@ -256,6 +269,9 @@
 			<if test="updateTime != null">
 				UPDATE_TIME = #{updateTime},
 			</if>
+			<if test="topDepartmentName != null">
+			    TOP_DEPARTMENT_NAME = #{topDepartmentName},
+			</if>
 			<if test="dataSource != null">
 				DATA_SOURCE = #{dataSource}
 			</if>
@@ -279,6 +295,7 @@
 				CREATE_TIME = #{item.createTime},
 				UPDATE_PRO = #{item.updatePro},
 				UPDATE_TIME = #{item.updateTime},
+				TOP_DEPARTMENT_NAME = #{topDepartmentName},
 				DATA_SOURCE = #{item.dataSource}
 			</set>
 			<where>
@@ -318,6 +335,9 @@
         	<if test="updateTime != null">
         		UPDATE_TIME = #{updateTime},
         	</if>
+			<if test="topDepartmentName != null">
+				TOP_DEPARTMENT_NAME = #{topDepartmentName},
+			</if>
         	<if test="dataSource != null">
         		DATA_SOURCE = #{dataSource}
         	</if>
@@ -359,6 +379,9 @@
 	        	<if test="item.updateTime != null">
 	        		UPDATE_TIME = #{item.updateTime},
 	        	</if>
+				<if test="topDepartmentName != null">
+					TOP_DEPARTMENT_NAME = #{topDepartmentName},
+				</if>
 	        	<if test="item.dataSource != null">
 	        		DATA_SOURCE = #{item.dataSource}
 	        	</if>

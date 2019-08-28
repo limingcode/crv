@@ -10,7 +10,11 @@ import com.crv.erais.common.utils.UUIDUtils;
 import com.crv.erais.common.utils.ValidatorUtils;
 import com.crv.erais.dao.EraisAuditOrganMapper;
 import com.crv.erais.model.EraisAuditOrgan;
+import com.crv.erais.model.User;
 import com.crv.erais.service.EraisAuditOrganService;
+import com.crv.erais.service.bizservice.EraisUsersBizService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,21 +24,30 @@ import java.util.List;
 @Service
 public class EraisAuditOrganServiceImpl implements EraisAuditOrganService {
 
+    private static final Logger logger = LoggerFactory.getLogger(EraisAuditOrganServiceImpl.class);
+
 
     @Autowired
     private EraisAuditOrganMapper  eraisAuditOrganMapper;
+
+    @Autowired
+    private EraisUsersBizService eraisUsersBizService;
     @Autowired
     private ValidatorUtils validator;
     @Override
     public TableDataInfo getPageList(EraisAuditOrgan organ) {
         PageUtil.startPage(organ);
         List<EraisAuditOrgan> data =  eraisAuditOrganMapper.getList(organ);
+        for (int i=0;i<data.size();i++){
+
+            this.getUserPhone(data.get(i));
+        }
         return PageUtil.getDataTable(data);
     }
-
     @Override
     public EraisAuditOrgan getById(String Id) {
         EraisAuditOrgan organ = eraisAuditOrganMapper.getById(Id);
+        this.getUserPhone(organ);
         return  organ;
     }
 
@@ -101,5 +114,25 @@ public class EraisAuditOrganServiceImpl implements EraisAuditOrganService {
     @Override
     public void updateStatus(EraisAuditOrgan eraisAuditOrgan) {
         eraisAuditOrganMapper.update(eraisAuditOrgan);
+    }
+
+    /**
+     * 查询用户的手机号码
+     * @param eraisAuditOrgan
+     */
+    public void getUserPhone(EraisAuditOrgan eraisAuditOrgan){
+        String  ldapId = eraisAuditOrgan.getChargeId();
+        if(org.apache.commons.lang3.StringUtils.isNotEmpty(ldapId)) {
+            try {
+                logger.info("查询用户信息 ldapId=" + ldapId);
+                List<User> userList = eraisUsersBizService.getUserList(10, 1, ldapId, "","");
+                if (userList!=null && userList.size()>0 ){
+                    eraisAuditOrgan.setPhone(userList.get(0).getMobilePhone());
+                }
+            } catch (Exception e) {
+                e.getMessage();
+               logger.error("查询用户信息失败" + e.getMessage());
+            }
+        }
     }
 }

@@ -1,10 +1,16 @@
 package com.crv.erais.service.bizservice;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.crv.erais.common.utils.ValidatorUtils;
 import com.crv.erais.model.EraisUsersRoles;
+import com.crv.erais.model.User;
+import com.crv.erais.model.common.Result;
+import com.crv.erais.model.common.ResultCode;
 import com.crv.erais.service.dataservice.EraisUsersRolesDataService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +25,7 @@ import com.crv.erais.common.utils.UUIDUtils;
 import com.crv.erais.model.EraisUsers;
 import com.crv.erais.service.dataservice.EraisUsersDataService;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 @Service("eraisUsersBizService")
 public class EraisUsersBizService {
@@ -29,6 +36,8 @@ public class EraisUsersBizService {
 	private ValidatorUtils validator;
 	@Autowired
 	private EraisUsersRolesDataService eraisUsersRolesDataService;
+	@Autowired
+	private RestTemplate template;
     /**
      * 根据id查询
      *
@@ -269,5 +278,26 @@ public class EraisUsersBizService {
 	}
 	public void updateStatus(EraisUsers eraisUsers){
 		eraisUsersDataService.update(eraisUsers);
+	}
+
+	/**
+	 * 调用第三方接口查询用户
+	 * @param pageSize
+	 * @param userAccount
+	 * @param userAccount
+	 * @param userName
+	 * @return
+	 */
+	public List<User> getUserList (int pageSize,int current,String userAccount,String userName,String deptCode){
+		JSONObject userResult = JSONObject.parseObject(
+				template.getForObject("http://10.239.16.30:18081/upm/user/page?pageSize="+pageSize+"&current="+current+"&userName="+userName+"&userAccount="+userAccount+"&deptCode="+deptCode,String.class));
+
+		if (userResult.getInteger("code")==0){
+			JSONObject userJson = userResult.getJSONObject("data");
+			List<User> userList = JSON.parseArray(userJson.getString("records"), User.class);
+			return userList;
+		}else {
+			return new ArrayList<User>();
+		}
 	}
 }

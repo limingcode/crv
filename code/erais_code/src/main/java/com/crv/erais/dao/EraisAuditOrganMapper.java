@@ -3,11 +3,13 @@ package com.crv.erais.dao;
 import com.crv.erais.model.EraisAuditOrgan;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 
 @Mapper
+@Repository
 public interface EraisAuditOrganMapper {
 
     public EraisAuditOrgan getById(String Id);
