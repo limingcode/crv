@@ -36,10 +36,7 @@
       <if test="code != null and code!=''"> and CODE = #{code}  </if>
       <if test="updatePro != null and updatePro!=''"> and UPDATE_PRO = #{updatePro}  </if>
       <if test="sort != null and sort!=''"> and SORT = #{sort} </if>
-<<<<<<< HEAD
-=======
       <if test="topOrganName != null and topOrganName!=''"> and TOP_ORGAN_NAME = #{topOrganName} </if>
->>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
       <if test="searchValue != null and searchValue != ''"> and (NAME like concat('%', concat(#{searchValue}, '%')))</if>
     </where>
 
@@ -103,12 +100,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ID, NAME, CHARGE_ID, CHARGE, TOP_ORGAN_ID, PHONE, STATUS, CREATE_PRO, SORT, CODE, 
-<<<<<<< HEAD
-    CREATE_TIME, UPDATE_PRO, UPDATE_TIME
-=======
+    ID, NAME, CHARGE_ID, CHARGE, TOP_ORGAN_ID, PHONE, STATUS, CREATE_PRO, SORT, CODE,
     CREATE_TIME, UPDATE_PRO,TOP_ORGAN_NAME, UPDATE_TIME
->>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
   </sql>
   <select id="getList" resultMap="BaseResultMap" parameterType="com.crv.erais.model.EraisAuditOrgan" >
     select
@@ -178,12 +171,9 @@
       <if test="updatePro != null" >
         UPDATE_PRO,
       </if>
-<<<<<<< HEAD
-=======
       <if test="topOrganName != null">
         TOP_ORGAN_NAME,
       </if>
->>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
       <if test="updateTime != null" >
         UPDATE_TIME,
       </if>
@@ -225,12 +215,9 @@
       <if test="updatePro != null" >
         #{updatePro,jdbcType=VARCHAR},
       </if>
-<<<<<<< HEAD
-=======
       <if test="topOrganName != null">
         #{topOrganName,jdbcType=VARCHAR},
       </if>
->>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
       <if test="updateTime != null" >
         #{updateTime,jdbcType=DATE},
       </if>
@@ -319,12 +306,9 @@
       <if test="updatePro != null" >
         UPDATE_PRO = #{updatePro,jdbcType=VARCHAR},
       </if>
-<<<<<<< HEAD
-=======
       <if test="topOrganName != null">
        TOP_ORGAN_NAME #{topOrganName,jdbcType=VARCHAR},
       </if>
->>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
       <if test="updateTime != null" >
         UPDATE_TIME = #{updateTime,jdbcType=DATE},
       </if>
@@ -347,9 +331,6 @@
       UPDATE_TIME = #{updateTime,jdbcType=DATE}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-<<<<<<< HEAD
-=======
-
   <delete id="deleteBatch">
     DELETE FROM
        ERAIS_AUDIT_ORGAN
@@ -359,5 +340,4 @@
         #{item}	        </foreach>
     </where>
   </delete>
->>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 </mapper>
