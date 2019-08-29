@@ -100,7 +100,7 @@
   <sql id="Base_Column_List" >
     FIND, NATURE, ANALYS, RISK, RECOMMEND, REMARK, NUMBBER, FINDID
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFindExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFind" >
     select
     <if test="distinct" >
       distinct

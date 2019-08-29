@@ -70,7 +70,7 @@
   <sql id="Base_Column_List" >
     NUMBBER, FOCUS, SYSTEM, ISSUETIME, REGIMEDIGEST, FOCUSID
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocusExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocus" >
     select
     <if test="distinct" >
       distinct
@@ -84,7 +84,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocusExample" >
+  <delete id="deleteByExample" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocus" >
     delete from ERAIS_AUDIT_FOCUS
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -154,7 +154,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocusExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocus" resultType="java.lang.Integer" >
     select count(*) from ERAIS_AUDIT_FOCUS
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />

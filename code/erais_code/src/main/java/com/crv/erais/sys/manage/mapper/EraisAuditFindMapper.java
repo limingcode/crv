@@ -1,10 +1,10 @@
 package com.crv.erais.sys.manage.mapper;
 
 import com.crv.erais.sys.manage.pojo.EraisAuditFind;
-import com.crv.erais.sys.manage.pojo.EraisAuditFindExample;
 
 import java.util.List;
 
+import com.crv.erais.sys.manage.pojo.EraisAuditFocus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -25,7 +25,7 @@ public interface EraisAuditFindMapper {
     //批量删除
     int deleteBatch(@Param("ids") List<String> ids);
 
-    List<EraisAuditFind> selectByExample(EraisAuditFindExample example);
+    List<EraisAuditFind> selectByExample(EraisAuditFocus example);
 
     //更新操作
     int update(EraisAuditFind eraisAuditFind);

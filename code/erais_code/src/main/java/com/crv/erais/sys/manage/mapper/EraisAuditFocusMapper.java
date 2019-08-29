@@ -1,7 +1,6 @@
 package com.crv.erais.sys.manage.mapper;
 
 import com.crv.erais.sys.manage.pojo.EraisAuditFocus;
-import com.crv.erais.sys.manage.pojo.EraisAuditFocusExample;
 
 import java.util.List;
 
@@ -24,5 +23,5 @@ public interface EraisAuditFocusMapper {
     int update(EraisAuditFocus eraisAuditFocus);
 
     //查询对象
-    List<EraisAuditFocus> selectByExample(EraisAuditFocusExample example);
+    List<EraisAuditFocus> selectByExample(EraisAuditFocus example);
 }
