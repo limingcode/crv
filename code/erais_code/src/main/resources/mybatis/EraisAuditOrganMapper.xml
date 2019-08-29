@@ -26,6 +26,7 @@
       <if test="chargeId != null and chargeId!=''"> and CHARGE_ID = #{chargeId}  </if>
       <if test="charge != null and charge!=''"> and CHARGE = #{charge}  </if>
       <if test="topOrganId != null and topOrganId!=''"> and TOP_ORGAN_ID = #{topOrganId}  </if>
+      <if test="topOrganId == null and topOrganId==''"> and TOP_ORGAN_ID IS NULL  </if>
       <if test="phone != null and phone!=''"> and PHONE = #{phone}  </if>
       <if test="status != null and status!=''"> and STATUS = #{status}  </if>
       <if test="createPro != null and createPro!=''"> and CREATE_PRO = #{createPro}  </if>
