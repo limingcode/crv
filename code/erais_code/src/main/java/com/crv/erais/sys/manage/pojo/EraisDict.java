@@ -1,34 +1,29 @@
 package com.crv.erais.sys.manage.pojo;
 
+import com.crv.erais.model.BaseEntity;
 import lombok.Data;
 
+import java.util.List;
+
 /**
- * @author MingLi
- * @version First.0
- * @date 2019/8/23 10:20
+ * 审计数据字典实体类
  */
 @Data
-public class EraisDict {
-    /**
-     * "dict_name" VARCHAR2(255 BYTE) NULL ,
-     * "dict_code" VARCHAR2(255 BYTE) NULL ,
-     * "sort" VARCHAR2(255 BYTE) NULL ,
-     * "low_status" NUMBER NULL ,
-     * "remark" NUMBER NULL
-     */
-
-    //字典项名称
-    private String dictName;
-    //字典项编码
-    private String dictCode;
-    //排序
+public class EraisDict extends BaseEntity {
+    //字典名称
+    private String name;
+    //字典编码
+    private String code;
+    //字典排序
     private String sort;
-    //是否是最低级
-    private String low_status;
-    //备注
+    //字典状态
+    private String status;
+    //字典备注
     private String remark;
-
-
-
-
+    //字典id
+    private String id;
+    //字典上级ID
+    private String parentid;
+    //关联子节点的信息
+    private List<EraisDict> eraisDicts;
 }

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crv.erais.sys.manage.mapper.EraisAuditFindMapper" >
+  <resultMap id="BaseResultMap" type="com.crv.erais.sys.manage.pojo.EraisAuditFind" >
+    <result column="FIND" property="find" jdbcType="VARCHAR" />
+    <result column="NATURE" property="nature" jdbcType="VARCHAR" />
+    <result column="ANALYS" property="analys" jdbcType="VARCHAR" />
+    <result column="RISK" property="risk" jdbcType="VARCHAR" />
+    <result column="RECOMMEND" property="recommend" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="NUMBBER" property="numbber" jdbcType="VARCHAR" />
+    <result column="FINDID" property="findid" jdbcType="VARCHAR"  />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="where">
+    <where>
+      <if test="find != null" >
+        FIND,
+      </if>
+      <if test="nature != null" >
+        NATURE,
+      </if>
+      <if test="analys != null" >
+        ANALYS,
+      </if>
+      <if test="risk != null" >
+        RISK,
+      </if>
+      <if test="recommend != null" >
+        RECOMMEND,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="numbber != null" >
+        NUMBBER,
+      </if>
+      <if test="findid != null" >
+        FINDID,
+      </if>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    FIND, NATURE, ANALYS, RISK, RECOMMEND, REMARK, NUMBBER, FINDID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFind" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ERAIS_AUDIT_FIND
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="delete" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFind" >
+    delete from ERAIS_AUDIT_FIND
+    where FINDID=#{findid}
+  </delete>
+  <delete id="deleteBatch" >
+    delete from ERAIS_AUDIT_EVENT
+    where EVENTID in
+    <!---->
+    <foreach collection="ids" open="(" close=")" separator="," item="EVENTID">
+      #{eventid}
+    </foreach>
+  </delete>
+
+  <insert id="insert" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFind" >
+    insert into ERAIS_AUDIT_FIND (FIND, NATURE, ANALYS, 
+      RISK, RECOMMEND, REMARK, 
+      NUMBBER, FINDID)
+    values (#{find,jdbcType=VARCHAR}, #{nature,jdbcType=VARCHAR}, #{analys,jdbcType=VARCHAR}, 
+      #{risk,jdbcType=VARCHAR}, #{recommend,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{numbber,jdbcType=VARCHAR}, #{findid,jdbcType=VARCHAR})
+  </insert>
+<select id="findEvent" resultType="com.crv.erais.sys.manage.pojo.EraisAuditFind">
+   select ERAIS_AUDIT_FIND (FIND, NATURE, ANALYS,
+      RISK, RECOMMEND, REMARK,
+      NUMBBER, FINDID from ERAIS_AUDIT_FIND;
+
+</select>
+  <insert id="save" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFind" >
+    insert into ERAIS_AUDIT_FIND
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="find != null" >
+        FIND,
+      </if>
+      <if test="nature != null" >
+        NATURE,
+      </if>
+      <if test="analys != null" >
+        ANALYS,
+      </if>
+      <if test="risk != null" >
+        RISK,
+      </if>
+      <if test="recommend != null" >
+        RECOMMEND,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="numbber != null" >
+        NUMBBER,
+      </if>
+      <if test="findid != null" >
+        FINDID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="find != null" >
+        #{find,jdbcType=VARCHAR},
+      </if>
+      <if test="nature != null" >
+        #{nature,jdbcType=VARCHAR},
+      </if>
+      <if test="analys != null" >
+        #{analys,jdbcType=VARCHAR},
+      </if>
+      <if test="risk != null" >
+        #{risk,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null" >
+        #{recommend,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="numbber != null" >
+        #{numbber,jdbcType=VARCHAR},
+      </if>
+      <if test="findid != null" >
+        #{findid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFind" resultType="java.lang.Integer" >
+    select count(*) from ERAIS_AUDIT_FIND
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ERAIS_AUDIT_FIND
+    <set >
+      <if test="record.find != null" >
+        FIND = #{record.find,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nature != null" >
+        NATURE = #{record.nature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.analys != null" >
+        ANALYS = #{record.analys,jdbcType=VARCHAR},
+      </if>
+      <if test="record.risk != null" >
+        RISK = #{record.risk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recommend != null" >
+        RECOMMEND = #{record.recommend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numbber != null" >
+        NUMBBER = #{record.numbber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.findid != null" >
+        FINDID = #{record.findid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="update">
+    update ERAIS_AUDIT_FIND
+    <set>
+      <if test="find != null" >
+        FIND = #{find},
+      </if>
+      <if test="nature != null" >
+        NATURE = #{nature},
+      </if>
+      <if test="analys != null" >
+        ANALYS = #{analys},
+      </if>
+      <if test="risk != null" >
+        RISK = #{risk},
+      </if>
+      <if test="recommend != null" >
+        RECOMMEND = #{recommend},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark},
+      </if>
+      <if test="numbber != null" >
+        NUMBBER = #{numbber},
+      </if>
+      <if test="findid != null" >
+        FINDID = #{findid},
+      </if>
+    </set>
+    <where>
+      FINDID=#{findid}
+    </where>
+  </update>
+</mapper>

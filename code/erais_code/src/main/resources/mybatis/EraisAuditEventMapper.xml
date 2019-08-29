@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crv.erais.sys.manage.mapper.EraisAuditEventMapper" >
+  <resultMap id="BaseResultMap" type="com.crv.erais.sys.manage.pojo.EraisAuditEvent" >
+    <id column="EVENTID" property="eventid" jdbcType="VARCHAR" />
+    <result column="NUMBERR" property="numberr" jdbcType="VARCHAR" />
+    <result column="EVENT" property="event" jdbcType="VARCHAR" />
+    <result column="CLASSS" property="classs" jdbcType="VARCHAR" />
+    <result column="PROJECT" property="project" jdbcType="VARCHAR" />
+    <result column="MONAD" property="monad" jdbcType="VARCHAR" />
+    <result column="MONADLEVEL" property="monadlevel" jdbcType="VARCHAR" />
+    <result column="MUSTPROJECT" property="mustproject" jdbcType="VARCHAR" />
+    <result column="MANAGECLAS" property="manageclas" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    EVENTID, NUMBERR, EVENT, CLASSS, PROJECT, MONAD, MONADLEVEL, MUSTPROJECT, MANAGECLAS, 
+    STATUS, REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditEvent" >
+    select
+
+    <include refid="Base_Column_List" />
+    from ERAIS_AUDIT_EVENT
+
+  </select>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ERAIS_AUDIT_EVENT
+    where EVENTID = #{eventid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ERAIS_AUDIT_EVENT
+    where EVENTID = #{eventid,jdbcType=VARCHAR}
+  </delete>
+   <delete id="deleteBatch" >
+    delete from ERAIS_AUDIT_EVENT
+    where EVENTID in
+     <!---->
+    <foreach collection="ids" open="(" close=")" separator="," item="EVENTID">
+      #{eventid}
+    </foreach>
+   </delete>
+
+  <insert id="add" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditEvent" >
+    insert into ERAIS_AUDIT_EVENT (EVENTID, NUMBERR, EVENT, 
+      CLASSS, PROJECT, MONAD, 
+      MONADLEVEL, MUSTPROJECT, MANAGECLAS, 
+      STATUS, REMARK)
+    values (#{eventid,jdbcType=VARCHAR}, #{numberr,jdbcType=VARCHAR}, #{event,jdbcType=VARCHAR}, 
+      #{classs,jdbcType=VARCHAR}, #{project,jdbcType=VARCHAR}, #{monad,jdbcType=VARCHAR}, 
+      #{monadlevel,jdbcType=VARCHAR}, #{mustproject,jdbcType=VARCHAR}, #{manageclas,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+
+  </insert>
+  <insert id="save" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditEvent" >
+    insert into ERAIS_AUDIT_EVENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eventid != null" >
+        EVENTID,
+      </if>
+      <if test="numberr != null" >
+        NUMBERR,
+      </if>
+      <if test="event != null" >
+        EVENT,
+      </if>
+      <if test="classs != null" >
+        CLASSS,
+      </if>
+      <if test="project != null" >
+        PROJECT,
+      </if>
+      <if test="monad != null" >
+        MONAD,
+      </if>
+      <if test="monadlevel != null" >
+        MONADLEVEL,
+      </if>
+      <if test="mustproject != null" >
+        MUSTPROJECT,
+      </if>
+      <if test="manageclas != null" >
+        MANAGECLAS,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eventid != null" >
+        #{eventid,jdbcType=VARCHAR},
+      </if>
+      <if test="numberr != null" >
+        #{numberr,jdbcType=VARCHAR},
+      </if>
+      <if test="event != null" >
+        #{event,jdbcType=VARCHAR},
+      </if>
+      <if test="classs != null" >
+        #{classs,jdbcType=VARCHAR},
+      </if>
+      <if test="project != null" >
+        #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="monad != null" >
+        #{monad,jdbcType=VARCHAR},
+      </if>
+      <if test="monadlevel != null" >
+        #{monadlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="mustproject != null" >
+        #{mustproject,jdbcType=VARCHAR},
+      </if>
+      <if test="manageclas != null" >
+        #{manageclas,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditEvent" resultType="java.lang.Integer" >
+    select count(*) from ERAIS_AUDIT_EVENT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ERAIS_AUDIT_EVENT
+    <set >
+      <if test="record.eventid != null" >
+        EVENTID = #{record.eventid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numberr != null" >
+        NUMBERR = #{record.numberr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.event != null" >
+        EVENT = #{record.event,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classs != null" >
+        CLASSS = #{record.classs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.project != null" >
+        PROJECT = #{record.project,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monad != null" >
+        MONAD = #{record.monad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monadlevel != null" >
+        MONADLEVEL = #{record.monadlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mustproject != null" >
+        MUSTPROJECT = #{record.mustproject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageclas != null" >
+        MANAGECLAS = #{record.manageclas,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="update">
+    UPDATE
+    ERAIS_AUDIT_EVENT
+    <set>
+      <if test="numberr != null">
+        NUMBERR = #{numberr},
+      </if>
+      <if test="event != null">
+        EVENT = #{event},
+      </if>
+      <if test="classs != null">
+        CLASSS = #{classs},
+      </if>
+      <if test="project != null">
+        PROJECT = #{project},
+      </if>
+      <if test="monad != null">
+        MONAD = #{monad},
+      </if>
+      <if test="monadlevel != null">
+        MONADLEVEL = #{monadlevel},
+      </if>
+      <if test="mustproject != null">
+        MUSTPROJECT = #{mustproject},
+      </if>
+      <if test="manageclas != null">
+        MANAGECLAS = #{manageclas},
+      </if>
+      <if test="status != null">
+        STATUS = #{status},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark},
+      </if>
+      <if test="eventid != null">
+        EVENTID = #{eventid},
+      </if>
+
+
+    </set>
+    <where>
+      EVENTID = #{eventid}
+    </where>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditEvent" >
+    update ERAIS_AUDIT_EVENT
+    <set >
+      <if test="numberr != null" >
+        NUMBERR = #{numberr,jdbcType=VARCHAR},
+      </if>
+      <if test="event != null" >
+        EVENT = #{event,jdbcType=VARCHAR},
+      </if>
+      <if test="classs != null" >
+        CLASSS = #{classs,jdbcType=VARCHAR},
+      </if>
+      <if test="project != null" >
+        PROJECT = #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="monad != null" >
+        MONAD = #{monad,jdbcType=VARCHAR},
+      </if>
+      <if test="monadlevel != null" >
+        MONADLEVEL = #{monadlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="mustproject != null" >
+        MUSTPROJECT = #{mustproject,jdbcType=VARCHAR},
+      </if>
+      <if test="manageclas != null" >
+        MANAGECLAS = #{manageclas,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EVENTID = #{eventid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditEvent" >
+    update ERAIS_AUDIT_EVENT
+    set NUMBERR = #{numberr,jdbcType=VARCHAR},
+      EVENT = #{event,jdbcType=VARCHAR},
+      CLASSS = #{classs,jdbcType=VARCHAR},
+      PROJECT = #{project,jdbcType=VARCHAR},
+      MONAD = #{monad,jdbcType=VARCHAR},
+      MONADLEVEL = #{monadlevel,jdbcType=VARCHAR},
+      MUSTPROJECT = #{mustproject,jdbcType=VARCHAR},
+      MANAGECLAS = #{manageclas,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where EVENTID = #{eventid,jdbcType=VARCHAR}
+  </update>
+</mapper>

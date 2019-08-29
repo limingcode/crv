@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="136136d1-ae11-4070-88ba-caec298ec049" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/controller/DictController.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/controller/DictController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisDict.java" beforeDir="false" afterPath="$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisDict.java" afterDir="false" />
-    </list>
+    <list default="true" id="136136d1-ae11-4070-88ba-caec298ec049" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,17 +14,8 @@
       <file leaf-file-name="EraisDict.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisDict.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EraisAuditEvent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisAuditEvent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="966">
-              <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+            <state relative-caret-position="726">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
             </state>
           </provider>
         </entry>
@@ -57,11 +44,13 @@
     <option name="width" value="1346" />
     <option name="height" value="688" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -229,7 +218,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -317,6 +305,7 @@
       <workItem from="1566781578589" duration="4000" />
       <workItem from="1566789825040" duration="2500000" />
       <workItem from="1566983203267" duration="491000" />
+      <workItem from="1567051763527" duration="81000" />
     </task>
     <task id="LOCAL-00001" summary="哈哈哈">
       <created>1566536958251</created>
@@ -336,7 +325,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4814000" />
+    <option name="totallyTimeSpent" value="4895000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -346,22 +335,22 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.5030257" side_tool="true" visible="true" weight="0.41396105" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50378215" side_tool="true" visible="true" weight="0.41396105" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4969743" visible="true" weight="0.41396105" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49621785" weight="0.4132901" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31543118" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31996974" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -384,18 +373,19 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisDict.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisDict.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="736">
           <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisAuditEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisAuditEvent.java" />
     <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisDict.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
@@ -403,13 +393,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisAuditEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="33" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisAuditEvent.java" />
     <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisDict.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
@@ -417,13 +401,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisAuditEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="32" column="30" lean-forward="true" selection-start-line="32" selection-start-column="30" selection-end-line="33" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisAuditEvent.java" />
     <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisDict.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
@@ -431,24 +409,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisAuditEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="943">
-          <caret line="41" column="8" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisAuditEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisAuditEvent.java" />
+    <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisAuditEvent.java" />
     <entry file="file://$PROJECT_DIR$/code/erais_code/src/main/java/com/crv/erais/sys/manage/pojo/EraisDict.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="726">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crv.erais.sys.manage.mapper.EraisAuditFocusMapper" >
+  <resultMap id="BaseResultMap" type="com.crv.erais.sys.manage.pojo.EraisAuditFocus" >
+    <result column="NUMBBER" property="numbber" jdbcType="VARCHAR" />
+    <result column="FOCUS" property="focus" jdbcType="VARCHAR" />
+    <result column="SYSTEM" property="system" jdbcType="VARCHAR" />
+    <result column="ISSUETIME" property="issuetime" jdbcType="TIMESTAMP" />
+    <result column="REGIMEDIGEST" property="regimedigest" jdbcType="VARCHAR" />
+    <result column="FOCUSID" property="focusid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    NUMBBER, FOCUS, SYSTEM, ISSUETIME, REGIMEDIGEST, FOCUSID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocus" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ERAIS_AUDIT_FOCUS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocus" >
+    delete from ERAIS_AUDIT_FOCUS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <delete id="delete" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocus" >
+    delete from ERAIS_AUDIT_FOCUS
+    where FOCUSID=#{focusid}
+  </delete>
+  <insert id="save" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocus" >
+    insert into ERAIS_AUDIT_FOCUS (NUMBBER, FOCUS, SYSTEM, 
+      ISSUETIME, REGIMEDIGEST, FOCUSID
+      )
+    values (#{numbber,jdbcType=VARCHAR}, #{focus,jdbcType=VARCHAR}, #{system,jdbcType=VARCHAR}, 
+      #{issuetime,jdbcType=TIMESTAMP}, #{regimedigest,jdbcType=VARCHAR}, #{focusid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <delete id="deleteBatch" >
+    delete from ERAIS_AUDIT_EVENT
+    where EVENTID in
+    <!---->
+    <foreach collection="ids" open="(" close=")" separator="," item="EVENTID">
+      #{eventid}
+    </foreach>
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocus" >
+    insert into ERAIS_AUDIT_FOCUS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="numbber != null" >
+        NUMBBER,
+      </if>
+      <if test="focus != null" >
+        FOCUS,
+      </if>
+      <if test="system != null" >
+        SYSTEM,
+      </if>
+      <if test="issuetime != null" >
+        ISSUETIME,
+      </if>
+      <if test="regimedigest != null" >
+        REGIMEDIGEST,
+      </if>
+      <if test="focusid != null" >
+        FOCUSID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="numbber != null" >
+        #{numbber,jdbcType=VARCHAR},
+      </if>
+      <if test="focus != null" >
+        #{focus,jdbcType=VARCHAR},
+      </if>
+      <if test="system != null" >
+        #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="issuetime != null" >
+        #{issuetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regimedigest != null" >
+        #{regimedigest,jdbcType=VARCHAR},
+      </if>
+      <if test="focusid != null" >
+        #{focusid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.crv.erais.sys.manage.pojo.EraisAuditFocus" resultType="java.lang.Integer" >
+    select count(*) from ERAIS_AUDIT_FOCUS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ERAIS_AUDIT_FOCUS
+    <set >
+      <if test="numbber != null" >
+        NUMBBER = #{record.numbber,jdbcType=VARCHAR},
+      </if>
+      <if test="focus != null" >
+        FOCUS = #{record.focus,jdbcType=VARCHAR},
+      </if>
+      <if test="system != null" >
+        SYSTEM = #{record.system,jdbcType=VARCHAR},
+      </if>
+      <if test="issuetime != null" >
+        ISSUETIME = #{issuetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regimedigest != null" >
+        REGIMEDIGEST = #{regimedigest,jdbcType=VARCHAR},
+      </if>
+      <if test="record.focusid != null" >
+        FOCUSID = #{record.focusid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+  <update id="update" >
+    update ERAIS_AUDIT_FOCUS
+    <set>
+      <if test="numbber != null" >
+        NUMBBER = #{numbber},
+      </if>
+      <if test="focus != null" >
+        FOCUS = #{focus},
+      </if>
+      <if test="system != null" >
+        SYSTEM = #{system},
+      </if>
+      <if test="issuetime != null" >
+        ISSUETIME = #{issuetime},
+      </if>
+      <if test="regimedigest != null" >
+        REGIMEDIGEST = #{regimedigest},
+      </if>
+      <if test="focusid != null" >
+        FOCUSID = #{focusid},
+      </if>
+
+    </set>
+    <where>
+      FOCUSID=#{focusid}
+    </where>
+  </update>
+</mapper>
