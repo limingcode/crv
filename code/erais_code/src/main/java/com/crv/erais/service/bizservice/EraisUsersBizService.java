@@ -12,6 +12,7 @@ import com.crv.erais.model.User;
 import com.crv.erais.model.common.Result;
 import com.crv.erais.model.common.ResultCode;
 import com.crv.erais.service.dataservice.EraisUsersRolesDataService;
+import net.sf.jsqlparser.expression.StringValue;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -298,6 +299,31 @@ public class EraisUsersBizService {
 			return userList;
 		}else {
 			return new ArrayList<User>();
+		}
+	}
+	/**
+	 * 调用第三方接口查询用户
+	 * @param pageSize
+	 * @param userAccount
+	 * @param userAccount
+	 * @param userName
+	 * @return
+	 */
+	public TableDataInfo getUserListPage (int pageSize,int current,String userAccount,String userName,String deptCode){
+		JSONObject userResult = JSONObject.parseObject(
+				template.getForObject("http://10.239.16.30:18081/upm/user/page?pageSize="+pageSize+"&current="+current+"&userName="+userName+"&userAccount="+userAccount+"&deptCode="+deptCode,String.class));
+		TableDataInfo tab = new TableDataInfo();
+		if (userResult.getInteger("code")==0){
+			JSONObject userJson = userResult.getJSONObject("data");
+			int  current1 = Integer.parseInt(userJson.getString("current").toString());
+			int  total = Integer.parseInt(userJson.getString("total").toString());
+			List<User> userList = JSON.parseArray(userJson.getString("records"), User.class);
+			tab.setRows(userList);
+			tab.setTotal(total);
+			tab.setPageNum(current1);
+			return tab;
+		}else {
+			return tab;
 		}
 	}
 }
