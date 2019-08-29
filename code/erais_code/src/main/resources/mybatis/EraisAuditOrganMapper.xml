@@ -15,11 +15,8 @@
     <result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
     <result column="UPDATE_PRO" property="updatePro" jdbcType="VARCHAR" />
     <result column="UPDATE_TIME" property="updateTime" jdbcType="DATE" />
-<<<<<<< HEAD
-=======
     <result column="TOP_ORGAN_NAME" property="topOrganName" jdbcType="VARCHAR" />
 
->>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
   </resultMap>
 
   <sql id="sereach_sql" >
