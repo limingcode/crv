@@ -7,11 +7,14 @@ import java.util.List;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.crv.erais.common.utils.ValidatorUtils;
+<<<<<<< HEAD
+=======
 import com.crv.erais.model.EraisUsersRoles;
 import com.crv.erais.model.User;
 import com.crv.erais.model.common.Result;
 import com.crv.erais.model.common.ResultCode;
 import com.crv.erais.service.dataservice.EraisUsersRolesDataService;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -24,8 +27,14 @@ import com.crv.erais.common.utils.UUIDUtils;
 
 import com.crv.erais.model.EraisUsers;
 import com.crv.erais.service.dataservice.EraisUsersDataService;
+<<<<<<< HEAD
+=======
 import org.springframework.transaction.annotation.Transactional;
+<<<<<<< HEAD
 import org.springframework.web.client.RestTemplate;
+=======
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
+>>>>>>> 935a27e2305470225147b110ec66e1d3690722b2
 
 @Service("eraisUsersBizService")
 public class EraisUsersBizService {
@@ -34,10 +43,16 @@ public class EraisUsersBizService {
     private EraisUsersDataService eraisUsersDataService;
 	@Autowired
 	private ValidatorUtils validator;
+<<<<<<< HEAD
+=======
 	@Autowired
 	private EraisUsersRolesDataService eraisUsersRolesDataService;
+<<<<<<< HEAD
 	@Autowired
 	private RestTemplate template;
+=======
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
+>>>>>>> 935a27e2305470225147b110ec66e1d3690722b2
     /**
      * 根据id查询
      *
@@ -55,6 +70,8 @@ public class EraisUsersBizService {
 		if (eraisUsers == null) {
 			return null;
 		}
+<<<<<<< HEAD
+=======
 		//查询关联角色
 		EraisUsersRoles ro = new EraisUsersRoles();
 		ro.setUserId(id);
@@ -62,6 +79,7 @@ public class EraisUsersBizService {
 		if (list != null && list.size()>0){
 			eraisUsers.setUsersRolesList(list);
 		}
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 		return eraisUsers;
 	}
 
@@ -170,7 +188,10 @@ public class EraisUsersBizService {
      * @date: 2019-08-25 20:28:07
      * @param eraisUsers 传输对象
      */
+<<<<<<< HEAD
+=======
     @Transactional
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
     public void save(EraisUsers eraisUsers) {
 		/* 数据校验 */
 		eraisUsers.setId(UUIDUtils.getUUID());
@@ -188,10 +209,13 @@ public class EraisUsersBizService {
 			throw new BusinessException(1,"用户姓名或用户ID重复");
 		}
     	eraisUsersDataService.save(eraisUsers);
+<<<<<<< HEAD
+=======
 		//保存用户配置的角色
 		if (eraisUsers.getUsersRolesList()!= null){
 			eraisUsersRolesDataService.saveBatch(eraisUsers.getUsersRolesList());
 		}
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
     }
     
     /**
@@ -228,6 +252,8 @@ public class EraisUsersBizService {
 		/* 数据校验非空 */
 		validator.validator(eraisUsersPo);
 		eraisUsersDataService.update(eraisUsersPo);
+<<<<<<< HEAD
+=======
 		//更新用户配置的角色
 		if (eraisUsers.getUsersRolesList()!= null){
 			List<EraisUsersRoles> rolesList  = eraisUsers.getUsersRolesList();
@@ -242,6 +268,7 @@ public class EraisUsersBizService {
 				}
 			}
 		}
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 	}
 	
     /**
@@ -257,6 +284,8 @@ public class EraisUsersBizService {
     	}
     	eraisUsersDataService.delete(id);
     }
+<<<<<<< HEAD
+=======
 
 	/**
 	 * 删除用户配置的角色
@@ -279,6 +308,7 @@ public class EraisUsersBizService {
 	public void updateStatus(EraisUsers eraisUsers){
 		eraisUsersDataService.update(eraisUsers);
 	}
+<<<<<<< HEAD
 
 	/**
 	 * 调用第三方接口查询用户
@@ -300,4 +330,7 @@ public class EraisUsersBizService {
 			return new ArrayList<User>();
 		}
 	}
+=======
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
+>>>>>>> 935a27e2305470225147b110ec66e1d3690722b2
 }

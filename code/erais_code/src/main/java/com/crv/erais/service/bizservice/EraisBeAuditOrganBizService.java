@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
 import com.crv.erais.common.utils.SeriaNumberGeneratorUtils;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 import com.crv.erais.common.utils.ValidatorUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +30,10 @@ public class EraisBeAuditOrganBizService {
     private EraisBeAuditOrganDataService eraisBeAuditOrganDataService;
 	@Autowired
 	private ValidatorUtils validator;
+<<<<<<< HEAD
+=======
 	private  static final String DATA_SOURCE ="ERAIS";
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
     /**
      * 根据id查询
      *
@@ -158,15 +164,22 @@ public class EraisBeAuditOrganBizService {
 		eraisBeAuditOrgan.setId(UUIDUtils.getUUID());
 		eraisBeAuditOrgan.setCreateTime(new Date());
 		eraisBeAuditOrgan.setUpdateTime(new Date());
+<<<<<<< HEAD
+=======
 		eraisBeAuditOrgan.setDataSource(DATA_SOURCE);//新增数据默认来源为 ERAIS
 		eraisBeAuditOrgan.setCode(SeriaNumberGeneratorUtils.getSeriaNumberGenerator());
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 		//创建人
 		//eraisBeAuditOrgan.setCreatePro("");
 		//数据非空验证
 		validator.validator(eraisBeAuditOrgan);
+<<<<<<< HEAD
+		List<EraisBeAuditOrgan> list = eraisBeAuditOrganDataService.list(eraisBeAuditOrgan);
+=======
 		EraisBeAuditOrgan reqEraisBeAuditOrgan = new EraisBeAuditOrgan();
 		reqEraisBeAuditOrgan.setDepartmentName(eraisBeAuditOrgan.getDepartmentName());
 		List<EraisBeAuditOrgan> list = eraisBeAuditOrganDataService.getAllList(reqEraisBeAuditOrgan);
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 		if(list !=null && list.size()>0){
 			throw new BusinessException(1,"非审计机构名称不能重复。");
 		}
@@ -185,6 +198,11 @@ public class EraisBeAuditOrganBizService {
 		EraisBeAuditOrgan eraisBeAuditOrgan = eraisBeAuditOrganDataService.getById(eraisBeAuditOrgan2.getId());
 		BeanUtils.copyProperties(eraisBeAuditOrgan2, eraisBeAuditOrgan);//前赋值给后对象
 		validator.validator(eraisBeAuditOrgan);
+<<<<<<< HEAD
+		EraisBeAuditOrgan eraisBeAuditOrgan1 = new EraisBeAuditOrgan();
+		eraisBeAuditOrgan1.setDepartmentName(eraisBeAuditOrgan.getDepartmentName());
+		List<EraisBeAuditOrgan> list = eraisBeAuditOrganDataService.list(eraisBeAuditOrgan1);
+=======
 		if(StringUtils.isEmpty(eraisBeAuditOrgan.getDataSource())){
 			if(eraisBeAuditOrgan.getDataSource().equals(DATA_SOURCE)){
 				throw new BusinessException(1,"数据来源为 "+DATA_SOURCE +"的不能修改");
@@ -193,6 +211,7 @@ public class EraisBeAuditOrganBizService {
 		EraisBeAuditOrgan eraisBeAuditOrgan1 = new EraisBeAuditOrgan();
 		eraisBeAuditOrgan1.setDepartmentName(eraisBeAuditOrgan.getDepartmentName());
 		List<EraisBeAuditOrgan> list = eraisBeAuditOrganDataService.getAllList(eraisBeAuditOrgan1);
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 		if(list !=null){
 			if(list.size()>1){
 				throw new BusinessException(1,"非审计机构名称不能重复。");
@@ -222,6 +241,8 @@ public class EraisBeAuditOrganBizService {
     	}
     	eraisBeAuditOrganDataService.delete(id);
     }
+<<<<<<< HEAD
+=======
 	/**
 	 * 批量删除
 	 * @param ids
@@ -232,4 +253,5 @@ public class EraisBeAuditOrganBizService {
 	public void updateStatus(EraisBeAuditOrgan eraisBeAuditOrgan){
 		eraisBeAuditOrganDataService.update(eraisBeAuditOrgan);
 	}
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crv.erais.sys.manage.mapper.DictMapper">
+    <resultMap id="BaseResultMap" type="com.crv.erais.sys.manage.pojo.EraisDict" >
+        <id column="DICT_NAME" property="dictName" jdbcType="VARCHAR" />
+        <result column="DICT_CODE" property="dictCode" jdbcType="VARCHAR" />
+        <result column="SORT" property="sort" jdbcType="VARCHAR" />
+        <result column="LOW_STATUS" property="lowStatus" jdbcType="VARCHAR" />
+        <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+        <result column="DICT_ID" property="dictId" jdbcType="VARCHAR" />
+        <result column="PARENT_ID" property="parentId" jdbcType="DECIMAL" />
+
+    </resultMap>
+
+    <sql id="sereach_sql" >
+        <where>
+            <if test="dictName != null and dictName!=''"> and DICT_NAME = #{dictName}  </if>
+            <if test="dictCode != null and dictCode!=''"> and DICT_CODE = #{dictCode}  </if>
+            <if test="sort != null and sort!=''"> and SORT = #{sort}  </if>
+            <if test="lowStatus != null and lowStatus!=''"> and LOW_STATUS = #{lowStatus}  </if>
+            <if test="remark != null and remark!=''"> and REMARK = #{remark}  </if>
+            <if test="dictId != null and dictId!=''"> and DICT_ID = #{dictId}  </if>
+            <if test="parentId != null and parentId!=''"> and PARENT_ID = #{parentId}  </if>
+        </where>
+
+    </sql>
+
+    <insert id="add" parameterType="com.crv.erais.sys.manage.pojo.EraisDict" >
+    insert into ERAIS_DICT (DICT_NAME, DICT_CODE, SORT,
+      LOW_STATUS, REMARK, DICT_ID,
+      PARENT_ID
+    values (#{dictName,jdbcType=VARCHAR}, #{dictCode,jdbcType=VARCHAR}, #{sort,jdbcType=VARCHAR},
+      #{lowStatus,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{dictId,jdbcType=VARCHAR},
+      #{parentId,jdbcType=DECIMAL})
+  </insert>
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        ERAIS_DICT
+    </select>
+
+
+
+
+
+</mapper>

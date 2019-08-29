@@ -10,7 +10,10 @@ import com.crv.erais.common.exception.BusinessException;
 import com.crv.erais.common.utils.ExcelUtil;
 import com.crv.erais.common.utils.ValidatorUtils;
 import com.crv.erais.model.EraisAuditOrgan;
+<<<<<<< HEAD
+=======
 import com.crv.erais.model.EraisUsers;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -261,6 +264,8 @@ public class EraisBeAuditOrganController {
 		}
 		return Result.success(resList);
 	}
+<<<<<<< HEAD
+=======
 	/**
 	 *  @param ids
 	 * @return Result
@@ -296,4 +301,5 @@ public class EraisBeAuditOrganController {
 		eraisBeAuditOrganBizService.updateStatus(beAuditOrgan);
 		return Result.success();
 	}
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 }

@@ -419,6 +419,8 @@
     </select>
     
     <update id="clearCache"></update>
+<<<<<<< HEAD
+=======
 
 	<select id="getAllList" resultMap="EraisBeAuditOrganMap">
 		SELECT
@@ -471,4 +473,5 @@
 			</if>
 		</where>
 	</sql>
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 </mapper>

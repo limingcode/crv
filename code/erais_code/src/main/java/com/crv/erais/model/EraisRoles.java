@@ -42,7 +42,12 @@ public class EraisRoles extends BaseEntity implements Serializable {
     /**
      * 状态 1启用  2 禁用 
      */
+<<<<<<< HEAD
+    @NotEmpty  ( message = "状态不能为空")
+    private Integer status =1;
+=======
     private Integer status ;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
     
     /**
      * 创建人 
@@ -67,16 +72,24 @@ public class EraisRoles extends BaseEntity implements Serializable {
     /**
      * 角色授权的菜单字符串 
      */
+<<<<<<< HEAD
+    private String menuAuthority;
+    
+=======
     @NotEmpty  ( message = "菜单字符串不能为空 ")
     private String menuAuthority;
 
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
     /**
      * 操作 
      */
     private String operation;
+<<<<<<< HEAD
+=======
 
     /**排序**/
     private Integer sort ;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
     
 
 }

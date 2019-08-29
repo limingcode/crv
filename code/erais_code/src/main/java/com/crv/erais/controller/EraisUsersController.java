@@ -8,7 +8,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.crv.erais.common.exception.BusinessException;
+<<<<<<< HEAD
+=======
 import com.crv.erais.model.EraisRoles;
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 import com.crv.erais.model.User;
 import com.crv.erais.model.common.ResultCode;
 import org.apache.commons.lang3.StringUtils;
@@ -183,6 +186,8 @@ public class EraisUsersController {
 		eraisUsersBizService.delete(id);
 		return Result.success();
 	}
+<<<<<<< HEAD
+=======
 
 	/**
 	 * 删除用户配置的角色
@@ -230,4 +235,5 @@ public class EraisUsersController {
 		return Result.success();
 	}
 
+>>>>>>> a577cdc70f21af6be6195da512eb9a8ad0a02829
 }
