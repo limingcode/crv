@@ -1,7 +1,14 @@
 package com.crv.erais.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.alibaba.fastjson.JSONObject;
 import com.crv.erais.common.exception.BusinessException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -12,8 +19,11 @@ import com.crv.erais.model.common.Result;
 import com.crv.erais.common.tools.PageUtil;
 import com.crv.erais.common.tools.TableDataInfo;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.crv.erais.model.EraisPlan;
 import com.crv.erais.service.bizservice.EraisPlanBizService;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @RestController
 @RequestMapping("/crv")
@@ -174,4 +184,42 @@ public class EraisPlanController {
 		}
 		return Result.success();
 	}
+	 //多文件上传
+    @PostMapping("/batchUpload")
+    public void  handleFileUpload(HttpServletRequest request) throws Exception{
+        //定义返回客户端json对象
+        JSONObject returnData = new JSONObject();
+        //定义处理流对象,处理文件上传
+        BufferedOutputStream stream = null;
+        //定义map存储返回结果集
+        Map<String,String> returnfileMap = new HashMap<String, String>();
+
+        //获取前端上传的文件列表
+        List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("file");
+        MultipartFile file = null;
+
+        //遍历客户端上传文件列表
+        for (int i = 0; i < files.size(); ++i) {
+            //获取到每个文件
+            file = files.get(i);
+                try {
+                    //获取上传文件后缀
+                    String houzhui = file.getOriginalFilename().split("\\.")[1];
+                    byte[] bytes = file.getBytes();
+                 //   stream = new BufferedOutputStream(new FileOutputStream(file));
+                    stream.write(bytes);
+                    stream.close();
+                } catch (Exception e) {
+                    stream = null;
+                    //保存上传失败的文件信息,将上传文件名作为key,value值为"fail",存入returnfileMap中
+                    returnfileMap.put(file.getOriginalFilename(),"fail");
+                }finally {
+                    //关闭处理流
+                    if(stream!=null){stream.close();}
+                }
+        }
+        //返回returnfileMap集合到客户端
+        returnData.put("message",returnfileMap);
+        }
+    
 }

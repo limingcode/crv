@@ -44,19 +44,16 @@ public class EraisUsersController {
 	public Result getUserList(@RequestParam("pageSize") int pageSize,@RequestParam("current")int current,
 							  @RequestParam("userName") String userName, @RequestParam("userAccount") String userAccount
 	,@RequestParam("deptCode") String deptCode){
-		List<User> userList = new ArrayList<User>();
+		TableDataInfo tab = new TableDataInfo();
 		try {
-			userList = eraisUsersBizService.getUserList ( pageSize, current, userAccount, userName,deptCode);
-			if (userList ==null) {
-				logger.error("调用第三方接口查询用户数据失败 userList="+userList);
-				return Result.failure(1, "查询失败");
-			}
+			tab = eraisUsersBizService.getUserListPage ( pageSize, current, userAccount, userName,deptCode);
+
 		}catch (Exception e){
 			e.getMessage();
 			logger.error("调用第三方接口查询用户数据失败"+e.getMessage());
 			return Result.failure(1, "查询失败");
 		}
-		return Result.success(userList);
+		return Result.success(tab);
 	}
 	/**
      * 根据id查询
