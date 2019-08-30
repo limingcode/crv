@@ -21,7 +21,6 @@ public interface EraisAuditFocusMapper {
 
     //修改
     int update(EraisAuditFocus eraisAuditFocus);
-
     //查询对象
     List<EraisAuditFocus> selectByExample(EraisAuditFocus example);
 }

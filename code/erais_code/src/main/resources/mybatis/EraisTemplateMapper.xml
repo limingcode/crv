@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crv.erais.sys.manage.mapper.EraisTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.crv.erais.sys.manage.pojo.EraisTemplate" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CLASSS" property="classs" jdbcType="VARCHAR" />
+    <result column="DECR" property="decr" jdbcType="VARCHAR" />
+    <result column="EXAMPLE" property="example" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="MONADLEVEL" property="monadlevel" jdbcType="VARCHAR" />
+    <result column="PROJECTCLASS" property="projectclass" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.crv.erais.sys.manage.pojo.EraisTemplate" extends="BaseResultMap" >
+    <result column="TEXT" property="text" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, NAME, CLASSS, DECR, EXAMPLE, STATUS, MONADLEVEL, PROJECTCLASS
+  </sql>
+  <sql id="Blob_Column_List" >
+    TEXT
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.crv.erais.sys.manage.pojo.EraisTemplateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ERAIS_TEMPLATE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="page" resultMap="BaseResultMap" parameterType="com.crv.erais.sys.manage.pojo.EraisTemplate" >
+    select
+    <include refid="Base_Column_List"/>
+    from ERAIS_TEMPLATE
+
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ERAIS_TEMPLATE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from ERAIS_TEMPLATE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.crv.erais.sys.manage.pojo.EraisTemplateExample" >
+    delete from ERAIS_TEMPLATE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.crv.erais.sys.manage.pojo.EraisTemplate" >
+    insert into ERAIS_TEMPLATE (ID, NAME, CLASSS, 
+      DECR, EXAMPLE, STATUS, 
+      MONADLEVEL, PROJECTCLASS, TEXT
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{classs,jdbcType=VARCHAR},
+      #{decr,jdbcType=VARCHAR}, #{example,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{monadlevel,jdbcType=VARCHAR}, #{projectclass,jdbcType=VARCHAR}, #{text,jdbcType=CLOB}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crv.erais.sys.manage.pojo.EraisTemplate" >
+    insert into ERAIS_TEMPLATE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="classs != null" >
+        CLASSS,
+      </if>
+      <if test="decr != null" >
+        DECR,
+      </if>
+      <if test="example != null" >
+        EXAMPLE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="monadlevel != null" >
+        MONADLEVEL,
+      </if>
+      <if test="projectclass != null" >
+        PROJECTCLASS,
+      </if>
+      <if test="text != null" >
+        TEXT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="classs != null" >
+        #{classs,jdbcType=VARCHAR},
+      </if>
+      <if test="decr != null" >
+        #{decr,jdbcType=VARCHAR},
+      </if>
+      <if test="example != null" >
+        #{example,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="monadlevel != null" >
+        #{monadlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="projectclass != null" >
+        #{projectclass,jdbcType=VARCHAR},
+      </if>
+      <if test="text != null" >
+        #{text,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.crv.erais.sys.manage.pojo.EraisTemplate" resultType="java.lang.Integer" >
+    select count(*) from ERAIS_TEMPLATE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ERAIS_TEMPLATE
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classs != null" >
+        CLASSS = #{record.classs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.decr != null" >
+        DECR = #{record.decr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.example != null" >
+        EXAMPLE = #{record.example,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monadlevel != null" >
+        MONADLEVEL = #{record.monadlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectclass != null" >
+        PROJECTCLASS = #{record.projectclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.text != null" >
+        TEXT = #{record.text,jdbcType=CLOB},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update ERAIS_TEMPLATE
+    set ID = #{record.id,jdbcType=DECIMAL},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      CLASSS = #{record.classs,jdbcType=VARCHAR},
+      DECR = #{record.decr,jdbcType=VARCHAR},
+      EXAMPLE = #{record.example,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      MONADLEVEL = #{record.monadlevel,jdbcType=VARCHAR},
+      PROJECTCLASS = #{record.projectclass,jdbcType=VARCHAR},
+      TEXT = #{record.text,jdbcType=CLOB}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ERAIS_TEMPLATE
+    set ID = #{record.id,jdbcType=DECIMAL},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      CLASSS = #{record.classs,jdbcType=VARCHAR},
+      DECR = #{record.decr,jdbcType=VARCHAR},
+      EXAMPLE = #{record.example,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      MONADLEVEL = #{record.monadlevel,jdbcType=VARCHAR},
+      PROJECTCLASS = #{record.projectclass,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crv.erais.sys.manage.pojo.EraisTemplate" >
+    update ERAIS_TEMPLATE
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="classs != null" >
+        CLASSS = #{classs,jdbcType=VARCHAR},
+      </if>
+      <if test="decr != null" >
+        DECR = #{decr,jdbcType=VARCHAR},
+      </if>
+      <if test="example != null" >
+        EXAMPLE = #{example,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="monadlevel != null" >
+        MONADLEVEL = #{monadlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="projectclass != null" >
+        PROJECTCLASS = #{projectclass,jdbcType=VARCHAR},
+      </if>
+      <if test="text != null" >
+        TEXT = #{text,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.crv.erais.sys.manage.pojo.EraisTemplate" >
+    update ERAIS_TEMPLATE
+    set NAME = #{name,jdbcType=VARCHAR},
+      CLASSS = #{classs,jdbcType=VARCHAR},
+      DECR = #{decr,jdbcType=VARCHAR},
+      EXAMPLE = #{example,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      MONADLEVEL = #{monadlevel,jdbcType=VARCHAR},
+      PROJECTCLASS = #{projectclass,jdbcType=VARCHAR},
+      TEXT = #{text,jdbcType=CLOB}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crv.erais.sys.manage.pojo.EraisTemplate" >
+    update ERAIS_TEMPLATE
+    set NAME = #{name,jdbcType=VARCHAR},
+      CLASSS = #{classs,jdbcType=VARCHAR},
+      DECR = #{decr,jdbcType=VARCHAR},
+      EXAMPLE = #{example,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      MONADLEVEL = #{monadlevel,jdbcType=VARCHAR},
+      PROJECTCLASS = #{projectclass,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

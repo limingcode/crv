@@ -68,6 +68,7 @@ public class AuditEventServiceImpl implements AuditEventService {
             f.setEventId(id);
             eraisAuditFindMapper.save(f);
         }
+
         List<EraisAuditFocus> eraisAuditFocus=event.getLeraisAuditFocuList();
         for(int i=0;i<eraisAuditFocus.size();i++){
             EraisAuditFocus f = eraisAuditFocus.get(i);
