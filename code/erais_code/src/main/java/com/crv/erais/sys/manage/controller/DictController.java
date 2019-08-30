@@ -47,7 +47,6 @@ public class DictController {
 
     @RequestMapping("save")
     public Result add(EraisDict eraisDict){
-
         int add = dictService.add(eraisDict);
 
         if (add<0){

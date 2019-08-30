@@ -47,6 +47,7 @@
     select  * from ERAIS_DICT start with PARENTID=#{parentid} connect by prior id=PARENTID
   </select>
 
+
   <update id="update">
     UPDATE
     ERAIS_DICT

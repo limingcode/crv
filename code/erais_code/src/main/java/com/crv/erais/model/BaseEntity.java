@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ import java.util.Map;
  * @author jw
  */
 @Data
-public class BaseEntity {
+public class BaseEntity implements Serializable {
 
     /**
      * 排序方式

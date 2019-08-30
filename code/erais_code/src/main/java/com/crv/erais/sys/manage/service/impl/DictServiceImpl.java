@@ -3,6 +3,7 @@ package com.crv.erais.sys.manage.service.impl;
 import com.crv.erais.common.StringUtils;
 import com.crv.erais.common.tools.PageUtil;
 import com.crv.erais.common.tools.TableDataInfo;
+import com.crv.erais.common.utils.UUIDUtils;
 import com.crv.erais.sys.manage.mapper.DictMapper;
 import com.crv.erais.sys.manage.pojo.EraisAuditEvent;
 import com.crv.erais.sys.manage.pojo.EraisDict;
@@ -10,6 +11,7 @@ import com.crv.erais.sys.manage.service.DictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
+import sun.plugin.util.UIUtil;
 
 import java.util.List;
 
@@ -34,6 +36,10 @@ public class DictServiceImpl implements DictService {
     public TableDataInfo findByParentId(EraisDict eraisDict) {
         PageUtil.startPage(eraisDict);
         List<EraisDict> eraisDicts = dictMapper.findByParentId(eraisDict);
+        for (int i=0;i<eraisDicts.size();i++){
+            eraisDicts.get(0);
+
+        }
         return PageUtil.getDataTable(eraisDicts);
     }
 
@@ -44,6 +50,8 @@ public class DictServiceImpl implements DictService {
      */
     @Override
     public int add(EraisDict eraisDict) {
+        String id =UUIDUtils.getUUID();
+        eraisDict.setId(id);
         findByParentId(eraisDict);
         int row = dictMapper.add(eraisDict);
         if (row < 0) {
@@ -85,6 +93,7 @@ public class DictServiceImpl implements DictService {
 
         List<EraisDict> list=  dictMapper.findByParentId(eraisDict);
         if (list!=null){
+
             List<EraisDict> list1 = dictMapper.eudit(eraisDict);
 
             eraisDict= list.get(0);
