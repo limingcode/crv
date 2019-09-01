@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class EraisAuditEvent extends BaseEntity {
     //审计事项ID
-    private String eventid;
+    private String id;
     //审计事项流水号
     private String numberr;
     //审计事项事件
@@ -29,7 +29,7 @@ public class EraisAuditEvent extends BaseEntity {
     //管理分类
     private String manageclas;
     //审计事项状态
-    private String status;
+    private Integer status;
     //审计事项备注
     private String remark;
     //审计事项发现点

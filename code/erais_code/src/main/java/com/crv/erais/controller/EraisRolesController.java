@@ -183,7 +183,7 @@ public class EraisRolesController {
 	 * @return Result
 	 */
 	@GetMapping("/eraisRoles/deleteBatch")
-    public Result deleteBatch(@RequestParam(value = "ids") String  ids){
+		public Result deleteBatch(@RequestParam(value = "ids") String  ids){
 		try {
 			if (StringUtils.isEmpty(ids)) {
 				return Result.failure(1,"请求列表为空");

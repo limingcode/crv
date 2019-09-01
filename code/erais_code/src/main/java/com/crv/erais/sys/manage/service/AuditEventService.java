@@ -1,6 +1,7 @@
 package com.crv.erais.sys.manage.service;
 
 import com.crv.erais.common.tools.TableDataInfo;
+import com.crv.erais.model.EraisUsers;
 import com.crv.erais.sys.manage.pojo.EraisAuditEvent;
 
 import java.util.List;
@@ -26,5 +27,5 @@ public interface AuditEventService {
 
     //更新对应的审计事项
     int update(EraisAuditEvent eventid);
-
+    void updateStatus(EraisAuditEvent eraisAuditEvent);
 }

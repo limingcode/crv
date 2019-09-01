@@ -23,5 +23,6 @@ public interface EraisAuditEventMapper {
     int add(EraisAuditEvent record);
     //更新操作
     int update(EraisAuditEvent eraisAuditEvent);
+    void updateStatus(EraisAuditEvent eraisAuditEvent);
 
 }

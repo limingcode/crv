@@ -61,14 +61,16 @@ public class AuditEventServiceImpl implements AuditEventService {
     public int add(EraisAuditEvent event) {
         //查询接口
         String id =UUIDUtils.getUUID();
-        event.setEventid(id);
+        event.setId(id);
+
+        //审计事项新增关发现
         List<EraisAuditFind> eraisAuditFinds = event.getEraisAuditFindList();
         for(int i=0;i<eraisAuditFinds.size();i++){
             EraisAuditFind f = eraisAuditFinds.get(i);
             f.setEventId(id);
             eraisAuditFindMapper.save(f);
         }
-
+        //审计事项新增关注点
         List<EraisAuditFocus> eraisAuditFocus=event.getLeraisAuditFocuList();
         for(int i=0;i<eraisAuditFocus.size();i++){
             EraisAuditFocus f = eraisAuditFocus.get(i);
@@ -85,7 +87,9 @@ public class AuditEventServiceImpl implements AuditEventService {
      */
     @Override
     public int deleteByPrimaryKey(String eventid) {
+
         return   eraisAuditEventMapper.deleteByPrimaryKey(eventid);
+
     }
     /**
      * 同时删除多条审计事项业务
@@ -107,6 +111,11 @@ public class AuditEventServiceImpl implements AuditEventService {
     public int update(EraisAuditEvent eventid) {
 
         return eraisAuditEventMapper.update(eventid);
+    }
+
+    @Override
+    public void updateStatus(EraisAuditEvent eraisAuditEvent) {
+        eraisAuditEventMapper.updateStatus(eraisAuditEvent);
     }
 
 
